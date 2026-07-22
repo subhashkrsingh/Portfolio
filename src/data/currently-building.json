@@ -1,0 +1,53 @@
+{
+  "projects": [
+    {
+      "title": "AI Fitness Coach",
+      "progress": 65,
+      "phase": "Currently building",
+      "summary": "An AI-powered health assistant for BMI, calories, protein, meals, workouts, and voice-guided coaching.",
+      "milestones": [
+        { "label": "Research", "done": true },
+        { "label": "Requirements", "done": true },
+        { "label": "UI", "done": true },
+        { "label": "Backend planning", "done": true },
+        { "label": "AI recommendation engine", "done": false },
+        { "label": "Meal planner", "done": false },
+        { "label": "Voice assistant", "done": false },
+        { "label": "Vision API", "done": false },
+        { "label": "Deployment", "done": false }
+      ]
+    },
+    {
+      "title": "AI Learning Journey",
+      "progress": 72,
+      "phase": "Learning roadmap",
+      "summary": "A transparent roadmap that captures completed fundamentals and upcoming agentic tooling.",
+      "milestones": [
+        { "label": "Python", "done": true },
+        { "label": "Prompt engineering", "done": true },
+        { "label": "Generative AI", "done": true },
+        { "label": "LLMs", "done": true },
+        { "label": "RAG", "done": false },
+        { "label": "Vector databases", "done": false },
+        { "label": "LangChain", "done": false },
+        { "label": "LangGraph", "done": false },
+        { "label": "MCP", "done": false },
+        { "label": "AI agents", "done": false },
+        { "label": "Fine-tuning", "done": false }
+      ]
+    }
+  ],
+  "learningJourney": [
+    { "topic": "Python", "status": "Completed" },
+    { "topic": "Prompt Engineering", "status": "Completed" },
+    { "topic": "Generative AI", "status": "Completed" },
+    { "topic": "LLMs", "status": "Completed" },
+    { "topic": "RAG", "status": "Learning" },
+    { "topic": "Vector Databases", "status": "Next" },
+    { "topic": "LangChain", "status": "Upcoming" },
+    { "topic": "LangGraph", "status": "Upcoming" },
+    { "topic": "MCP", "status": "Upcoming" },
+    { "topic": "AI Agents", "status": "Upcoming" },
+    { "topic": "Fine Tuning", "status": "Future" }
+  ]
+}
