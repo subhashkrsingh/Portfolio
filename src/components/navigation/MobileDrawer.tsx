@@ -1,9 +1,14 @@
 import { Button } from '@/components/ui/Button';
 import { navItems, site } from '@/data/content';
+import { useActiveSection } from '@/hooks/useActiveSection';
 import { cn } from '@/utils/cn';
+import { getNavHref, isNavItemActive } from '@/utils/navigation';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { ThemeToggle } from '@/components/navigation/ThemeToggle';
+
+const sectionIds = ['home', 'about', 'skills', 'projects', 'experience', 'contact'];
 
 type MobileDrawerProps = {
   open: boolean;
@@ -13,6 +18,7 @@ type MobileDrawerProps = {
 export function MobileDrawer({ open, onOpenChange }: MobileDrawerProps) {
   const prefersReducedMotion = useReducedMotion();
   const location = useLocation();
+  const activeSection = useActiveSection(sectionIds);
 
   return (
     <>
@@ -44,23 +50,30 @@ export function MobileDrawer({ open, onOpenChange }: MobileDrawerProps) {
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-display text-lg font-semibold text-white">{site.name}</p>
+                  <p className="font-display text-lg font-semibold text-white">SUBHASH.</p>
                   <p className="text-xs uppercase tracking-[0.24em] text-text-secondary">{site.role}</p>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => onOpenChange(false)}
-                  className="rounded-full border border-white/10 bg-white/5 p-2 text-text-primary transition-colors hover:bg-white/10"
-                >
-                  <X className="h-4 w-4" />
-                </button>
+                <div className="flex items-center gap-2">
+                  <ThemeToggle />
+                  <button
+                    type="button"
+                    onClick={() => onOpenChange(false)}
+                    className="rounded-full border border-white/10 bg-white/5 p-2 text-text-primary transition-colors hover:bg-white/10"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
 
               <nav className="mt-8 grid gap-2">
                 {navItems.map((item) => {
-                  const isActive = item.kind === 'route'
-                    ? location.pathname.startsWith(item.href)
-                    : location.hash === item.href || (!location.hash && item.href === '#home');
+                  const activeId = location.pathname.startsWith('/projects')
+                    ? 'projects'
+                    : location.pathname.startsWith('/blog')
+                      ? null
+                      : activeSection;
+                  const isActive = isNavItemActive(item, location.pathname, activeId);
+                  const href = getNavHref(item, location.pathname);
 
                   const classes = cn(
                     'rounded-2xl border px-4 py-3 text-sm font-medium transition-colors',
@@ -71,14 +84,28 @@ export function MobileDrawer({ open, onOpenChange }: MobileDrawerProps) {
 
                   if (item.kind === 'route') {
                     return (
-                      <Link key={item.label} to={item.href} className={classes} onClick={() => onOpenChange(false)}>
+                      <Link key={item.label} to={href} className={classes} onClick={() => onOpenChange(false)}>
                         {item.label}
                       </Link>
                     );
                   }
 
+                  if (item.kind === 'external') {
+                    return (
+                      <a
+                        key={item.label}
+                        href={href}
+                        download
+                        className={classes}
+                        onClick={() => onOpenChange(false)}
+                      >
+                        {item.label}
+                      </a>
+                    );
+                  }
+
                   return (
-                    <a key={item.label} href={item.href} className={classes} onClick={() => onOpenChange(false)}>
+                    <a key={item.label} href={href} className={classes} onClick={() => onOpenChange(false)}>
                       {item.label}
                     </a>
                   );

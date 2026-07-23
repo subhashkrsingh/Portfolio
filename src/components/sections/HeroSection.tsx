@@ -1,193 +1,206 @@
 import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
 import { Reveal } from '@/components/ui/Reveal';
-import { heroMetrics, heroTech, site } from '@/data/content';
-import { motion, useMotionValue, useReducedMotion } from 'framer-motion';
-import { ArrowDown, ArrowRight, Download, Mail } from 'lucide-react';
-import type { MouseEvent } from 'react';
+import { site, socialLinks } from '@/data/content';
+import { cn } from '@/utils/cn';
+import { motion, useReducedMotion } from 'framer-motion';
+import {
+  Atom,
+  Braces,
+  ChevronDown,
+  Github,
+  Linkedin,
+  Mail,
+  MoonStar,
+  Play,
+  ServerCog,
+  Sparkles,
+  Wind,
+  X,
+} from 'lucide-react';
+
+const iconMap = {
+  github: Github,
+  linkedin: Linkedin,
+  twitter: X,
+  email: Mail,
+  resume: MoonStar,
+} as const;
+
+const floatingCards = [
+  { title: 'React', subtitle: 'UI systems', icon: Atom, position: 'top-10 left-6', delay: 0 },
+  { title: 'TypeScript', subtitle: 'Strict types', icon: Braces, position: 'top-4 right-8', delay: 0.12 },
+  { title: 'Tailwind', subtitle: 'Design tokens', icon: Wind, position: 'bottom-12 left-0', delay: 0.24 },
+  { title: 'Node.js', subtitle: 'Backend logic', icon: ServerCog, position: 'bottom-4 right-4', delay: 0.34 },
+];
 
 export function HeroSection() {
   const prefersReducedMotion = useReducedMotion();
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const handleMouseMove = (event: MouseEvent<HTMLElement>) => {
-    if (prefersReducedMotion) {
-      return;
-    }
-
-    const bounds = event.currentTarget.getBoundingClientRect();
-    const centerX = bounds.left + bounds.width / 2;
-    const centerY = bounds.top + bounds.height / 2;
-    x.set((event.clientX - centerX) / 20);
-    y.set((event.clientY - centerY) / 20);
-  };
-
-  const resetMouse = () => {
-    x.set(0);
-    y.set(0);
-  };
 
   return (
-    <section
-      id="home"
-      className="section-shell section-padding scroll-mt-32"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={resetMouse}
-    >
-      <div className="section-content relative overflow-hidden rounded-[36px] border border-white/10 bg-[rgba(15,23,42,0.56)] px-5 py-8 shadow-card backdrop-blur-2xl sm:px-8 md:px-10 md:py-10">
-        <div className="absolute inset-0 bg-mesh opacity-60" />
-        <div className="absolute inset-0 surface-line opacity-20" />
-        <div className="absolute inset-0 noise-layer" />
+    <section id="home" className="section-shell section-padding scroll-mt-32">
+      <div className="section-content relative overflow-hidden rounded-[36px] border border-white/10 bg-[rgba(8,12,24,0.74)] px-5 py-8 shadow-card backdrop-blur-2xl sm:px-8 md:px-10 md:py-12">
+        <div className="absolute inset-0 hero-starfield opacity-30" />
+        <div className="absolute inset-0 surface-line opacity-15" />
+        <div className="absolute inset-0 noise-layer opacity-70" />
+        <div className="absolute -left-20 top-0 h-72 w-72 rounded-full bg-primary/12 blur-3xl" />
+        <div className="absolute right-0 top-16 h-80 w-80 rounded-full bg-secondary/12 blur-3xl" />
+        <div className="absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-accent/10 blur-3xl" />
 
-        <div className="relative grid gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-          <div className="max-w-3xl">
+        <div className="relative grid gap-14 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+          <div className="max-w-2xl">
             <Reveal>
-              <Badge variant="secondary">AI Engineer | Full Stack Developer</Badge>
+              <div className="inline-flex items-center gap-3 rounded-full border border-success/25 bg-success/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.32em] text-emerald-100">
+                <span className="h-2.5 w-2.5 rounded-full bg-success shadow-[0_0_0_6px_rgba(16,185,129,0.12)]" />
+                AI Engineer | Full Stack Developer
+              </div>
             </Reveal>
+
             <Reveal delay={0.05}>
-              <h1 className="mt-6 font-display text-5xl font-semibold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
-                {site.headline.split(' ').map((word, index) => (
-                  <motion.span
-                    key={`${word}-${index}`}
-                    className="mr-4 inline-block"
-                    initial={prefersReducedMotion ? false : { opacity: 0, y: 20, filter: 'blur(10px)' }}
-                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                    transition={{ duration: 0.42, delay: 0.08 + index * 0.03 }}
-                  >
-                    {word}
-                  </motion.span>
-                ))}
+              <p className="mt-8 text-xs font-medium uppercase tracking-[0.38em] text-text-secondary">
+                Premium engineering portfolio
+              </p>
+              <h1 className="mt-4 font-display text-5xl font-semibold leading-[1] tracking-tight text-white sm:text-6xl lg:text-[72px]">
+                Hi, I&apos;m
+                <span className="mt-3 block text-gradient">{site.name}</span>
               </h1>
             </Reveal>
+
             <Reveal delay={0.1}>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-text-secondary sm:text-xl">
-                {site.subheading}
+              <p className="mt-6 max-w-[560px] text-lg leading-8 text-text-secondary sm:text-xl">
+                AI Engineer specializing in Generative AI, Python, React, RAG, and Full Stack Development.
               </p>
             </Reveal>
 
             <Reveal delay={0.14}>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button href="#projects" variant="primary">
-                  View Projects
-                  <ArrowRight className="h-4 w-4" />
+                  View My Work
+                  <Play className="h-4 w-4 fill-current" />
                 </Button>
                 <Button href={site.resumeUrl} variant="outline" download>
-                  <Download className="h-4 w-4" />
                   Download Resume
-                </Button>
-                <Button href="#contact" variant="ghost">
-                  <Mail className="h-4 w-4" />
-                  Let&apos;s Connect
                 </Button>
               </div>
             </Reveal>
 
             <Reveal delay={0.18}>
-              <div className="mt-10 grid gap-4 sm:grid-cols-3">
-                {heroMetrics.map((metric) => (
-                  <motion.div
-                    key={metric.label}
-                    className="glass-card p-5"
-                    whileHover={prefersReducedMotion ? undefined : { y: -4 }}
-                    transition={{ duration: 0.18 }}
-                  >
-                    <p className="text-xs font-medium uppercase tracking-[0.26em] text-text-secondary">
-                      {metric.label}
-                    </p>
-                    <p className="mt-3 font-display text-xl font-semibold text-white">{metric.value}</p>
-                    <p className="mt-2 text-sm leading-6 text-text-secondary">{metric.note}</p>
-                  </motion.div>
-                ))}
+              <div className="mt-8 flex flex-wrap gap-3">
+                {socialLinks.slice(0, 4).map((link, index) => {
+                  const Icon = iconMap[link.icon];
+                  return (
+                    <motion.a
+                      key={link.label}
+                      href={link.href}
+                      target={link.icon === 'email' ? '_self' : '_blank'}
+                      rel="noreferrer"
+                      aria-label={link.label}
+                      className={cn(
+                        'inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-colors hover:border-secondary/35 hover:bg-secondary/15 hover:text-white',
+                      )}
+                      whileHover={prefersReducedMotion ? undefined : { y: -3, scale: 1.04 }}
+                      whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}
+                      transition={{ duration: 0.18, delay: index * 0.03 }}
+                    >
+                      <Icon className="h-4 w-4" />
+                    </motion.a>
+                  );
+                })}
               </div>
+            </Reveal>
+
+            <Reveal delay={0.22}>
+              <motion.a
+                href="#about"
+                className="mt-10 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.34em] text-text-secondary transition-colors hover:text-white"
+                animate={prefersReducedMotion ? undefined : { y: [0, 3, 0] }}
+                transition={{ duration: 2.4, repeat: Number.POSITIVE_INFINITY, ease: 'easeInOut' }}
+              >
+                Scroll to explore
+                <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white">
+                  <ChevronDown className="h-4 w-4" />
+                </span>
+              </motion.a>
             </Reveal>
           </div>
 
-          <Reveal delay={0.12} className="relative">
+          <Reveal delay={0.08} className="relative">
             <motion.div
-              className="glass-panel relative overflow-hidden p-5 sm:p-6"
-              whileHover={prefersReducedMotion ? undefined : { y: -5 }}
-              transition={{ duration: 0.2 }}
+              className="relative mx-auto flex min-h-[560px] w-full max-w-[620px] items-center justify-center"
+              initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10" />
               <motion.div
-                className="absolute right-6 top-6 h-24 w-24 rounded-full border border-white/10 bg-white/5"
-                style={{ x, y }}
+                className="absolute h-[430px] w-[430px] rounded-full bg-gradient-to-br from-primary/28 via-secondary/22 to-accent/22 blur-3xl"
+                animate={prefersReducedMotion ? undefined : { scale: [1, 1.04, 1], opacity: [0.75, 0.92, 0.75] }}
+                transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: 'easeInOut' }}
+              />
+
+              <motion.div
+                className="hero-orbit absolute h-[500px] w-[500px] rounded-full"
+                animate={prefersReducedMotion ? undefined : { rotate: 360 }}
+                transition={{ duration: 42, repeat: Number.POSITIVE_INFINITY, ease: 'linear' }}
               />
               <motion.div
-                className="absolute bottom-8 left-8 h-32 w-32 rounded-full border border-accent/20 bg-accent/10 blur-2xl"
-                style={{ x, y }}
+                className="hero-orbit absolute h-[360px] w-[360px] rounded-full border-dashed border-white/8"
+                animate={prefersReducedMotion ? undefined : { rotate: -360 }}
+                transition={{ duration: 30, repeat: Number.POSITIVE_INFINITY, ease: 'linear' }}
               />
-              <div className="relative">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-xs font-medium uppercase tracking-[0.28em] text-text-secondary">
-                      Available for
-                    </p>
-                    <h2 className="mt-2 font-display text-2xl font-semibold text-white">
-                      AI products, dashboards, and internal tools.
-                    </h2>
-                  </div>
-                  <div className="rounded-full border border-success/30 bg-success/12 px-3 py-2 text-xs font-semibold uppercase tracking-[0.26em] text-emerald-100">
-                    Open to work
+
+              <div className="absolute inset-0 hero-starfield opacity-20" />
+
+              <motion.div
+                className="relative z-10 flex h-[250px] w-[250px] items-center justify-center rounded-full border border-white/12 bg-[rgba(255,255,255,0.05)] p-3 shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_0_70px_rgba(124,92,255,0.22)]"
+                animate={prefersReducedMotion ? undefined : { y: [0, -8, 0] }}
+                transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: 'easeInOut' }}
+              >
+                <div className="flex h-full w-full items-center justify-center rounded-full border border-white/10 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.14),rgba(15,23,42,0.92)_60%)]">
+                  <div className="flex h-[180px] w-[180px] items-center justify-center rounded-full border border-white/10 bg-[linear-gradient(145deg,rgba(59,130,246,0.2),rgba(139,92,246,0.18),rgba(6,182,212,0.16))] text-center">
+                    <div>
+                      <p className="text-xs font-medium uppercase tracking-[0.34em] text-text-secondary">
+                        AI Engineer
+                      </p>
+                      <p className="mt-3 font-display text-4xl font-semibold tracking-tight text-white">SK</p>
+                      <p className="mt-2 text-xs uppercase tracking-[0.3em] text-text-secondary">
+                        Subhash Kumar Singh
+                      </p>
+                    </div>
                   </div>
                 </div>
+              </motion.div>
 
-                <div className="mt-8 grid gap-4">
-                  <div className="glass-card p-4">
-                    <div className="flex items-center justify-between gap-4">
-                      <div>
-                        <p className="text-xs uppercase tracking-[0.26em] text-text-secondary">System card</p>
-                        <p className="mt-2 font-display text-xl font-semibold text-white">{site.name}</p>
-                      </div>
-                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-primary/25 via-secondary/20 to-accent/25 text-xl font-bold text-white">
-                        SK
-                      </div>
-                    </div>
-                    <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-                      {['AI workflow design', 'Production UI', 'API integration', 'RAG foundations'].map((item) => (
-                        <div
-                          key={item}
-                          className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-text-secondary"
-                        >
-                          {item}
+              <div className="hidden md:block">
+                {floatingCards.map((card) => {
+                  const Icon = card.icon;
+                  return (
+                    <motion.div
+                      key={card.title}
+                      className={cn(
+                        'absolute w-[150px] rounded-[22px] border border-white/10 bg-[rgba(16,20,40,0.8)] p-4 shadow-[0_20px_50px_rgba(2,6,23,0.35)] backdrop-blur-xl',
+                        card.position,
+                      )}
+                      animate={prefersReducedMotion ? undefined : { y: [0, -8, 0], rotate: [0, 1, 0] }}
+                      transition={{
+                        duration: 6 + card.delay * 10,
+                        repeat: Number.POSITIVE_INFINITY,
+                        ease: 'easeInOut',
+                        delay: card.delay,
+                      }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white">
+                          <Icon className="h-4 w-4" />
                         </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {heroTech.map((tech, index) => (
-                      <motion.div
-                        key={tech}
-                        className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-white"
-                        animate={
-                          prefersReducedMotion
-                            ? undefined
-                            : {
-                                y: [0, index % 2 === 0 ? -4 : 4, 0],
-                              }
-                        }
-                        transition={{
-                          duration: 5 + index * 0.4,
-                          repeat: Number.POSITIVE_INFINITY,
-                          ease: 'easeInOut',
-                        }}
-                      >
-                        {tech}
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
+                        <div>
+                          <p className="text-sm font-semibold text-white">{card.title}</p>
+                          <p className="mt-1 text-xs text-text-secondary">{card.subtitle}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
             </motion.div>
-
-            <div className="mt-6 flex items-center gap-3 text-text-secondary">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5">
-                <ArrowDown className="h-4 w-4" />
-              </span>
-              <span className="text-sm uppercase tracking-[0.24em]">Scroll for projects and roadmap</span>
-            </div>
           </Reveal>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import type {
+  ContactDetail,
   BlogPost,
   CertificationItem,
   EducationItem,
@@ -6,6 +7,8 @@ import type {
   HeroMetric,
   NavItem,
   ProjectItem,
+  PortfolioStat,
+  SkillTile,
   SkillGroup,
   SocialLink,
   TestimonialItem,
@@ -26,8 +29,11 @@ export const site = {
   siteUrl,
   contactEmail,
   githubUsername,
+  twitterUrl: import.meta.env.VITE_TWITTER_URL || 'https://x.com/',
   resumeUrl: import.meta.env.VITE_RESUME_URL || '/resume.pdf',
   linkedinUrl: import.meta.env.VITE_LINKEDIN_URL || 'https://www.linkedin.com/in/your-profile',
+  phone: import.meta.env.VITE_PHONE_NUMBER || 'Available on request',
+  location: import.meta.env.VITE_LOCATION || 'India',
 };
 
 export const navItems: NavItem[] = [
@@ -35,9 +41,8 @@ export const navItems: NavItem[] = [
   { label: 'About', href: '#about', kind: 'anchor' },
   { label: 'Skills', href: '#skills', kind: 'anchor' },
   { label: 'Projects', href: '#projects', kind: 'anchor' },
-  { label: 'Roadmap', href: '#roadmap', kind: 'anchor' },
-  { label: 'GitHub', href: '#github', kind: 'anchor' },
-  { label: 'Blog', href: '/blog', kind: 'route' },
+  { label: 'Experience', href: '#experience', kind: 'anchor' },
+  { label: 'Resume', href: site.resumeUrl, kind: 'external' },
   { label: 'Contact', href: '#contact', kind: 'anchor' },
 ];
 
@@ -53,6 +58,11 @@ export const socialLinks: SocialLink[] = [
     icon: 'linkedin',
   },
   {
+    label: 'Twitter',
+    href: site.twitterUrl,
+    icon: 'twitter',
+  },
+  {
     label: 'Email',
     href: `mailto:${contactEmail}`,
     icon: 'email',
@@ -61,6 +71,98 @@ export const socialLinks: SocialLink[] = [
     label: 'Resume',
     href: site.resumeUrl,
     icon: 'resume',
+  },
+];
+
+export const portfolioStats: PortfolioStat[] = [
+  {
+    label: 'Projects Completed',
+    value: '15+',
+    iconKey: 'rocket',
+  },
+  {
+    label: 'Experience',
+    value: '1+ Years',
+    iconKey: 'briefcase',
+  },
+  {
+    label: 'Technologies',
+    value: '20+',
+    iconKey: 'graduation',
+  },
+  {
+    label: 'Problems Solved',
+    value: '300+',
+    iconKey: 'trophy',
+  },
+];
+
+export const aboutHighlights = [
+  'AI & Machine Learning',
+  'Clean Code',
+  'Problem Solver',
+  'Lifelong Learner',
+];
+
+export const skillTiles: SkillTile[] = [
+  {
+    title: 'React',
+    description: 'Component systems, state flow, and UI architecture built for scale.',
+    iconKey: 'react',
+  },
+  {
+    title: 'TypeScript',
+    description: 'Strict types that keep product logic predictable and maintainable.',
+    iconKey: 'typescript',
+  },
+  {
+    title: 'JavaScript',
+    description: 'Core language fluency for interaction, automation, and product logic.',
+    iconKey: 'javascript',
+  },
+  {
+    title: 'Node',
+    description: 'Backend services, API glue, and server-side orchestration.',
+    iconKey: 'node',
+  },
+  {
+    title: 'Python',
+    description: 'Automation, AI workflows, and data-friendly problem solving.',
+    iconKey: 'python',
+  },
+  {
+    title: 'Tailwind',
+    description: 'Design tokens, responsive layout, and fast UI implementation.',
+    iconKey: 'tailwind',
+  },
+  {
+    title: 'PostgreSQL',
+    description: 'Relational modeling and query design for dependable data systems.',
+    iconKey: 'postgres',
+  },
+  {
+    title: 'Git & GitHub',
+    description: 'Version control, collaboration, and shipping with confidence.',
+    iconKey: 'git',
+  },
+];
+
+export const contactDetails: ContactDetail[] = [
+  {
+    label: 'Email',
+    value: contactEmail,
+    href: `mailto:${contactEmail}`,
+    iconKey: 'email',
+  },
+  {
+    label: 'Phone',
+    value: site.phone,
+    iconKey: 'phone',
+  },
+  {
+    label: 'Location',
+    value: site.location,
+    iconKey: 'location',
   },
 ];
 
@@ -166,7 +268,7 @@ export const projects: ProjectItem[] = [
     slug: 'energixchange',
     title: 'EnergiXchange',
     category: 'Professional Dashboard',
-    status: 'Featured',
+    status: 'Full Stack',
     summary:
       'A live market analytics dashboard designed to make fast scanning, comparison, and decision-making feel calm and intentional.',
     problem:
@@ -196,7 +298,7 @@ export const projects: ProjectItem[] = [
     slug: 'ai-fitness-coach',
     title: 'AI Fitness Coach',
     category: 'Currently Building',
-    status: '65% Complete',
+    status: 'AI Product',
     summary:
       'An AI-powered health assistant for BMI, calories, protein, meal guidance, workout planning, and future voice interaction.',
     problem:
@@ -226,7 +328,7 @@ export const projects: ProjectItem[] = [
     slug: 'hospital-ipd-management-system',
     title: 'Hospital IPD Management System',
     category: 'Patient Management',
-    status: 'Enterprise Flow',
+    status: 'Enterprise',
     summary:
       'A structured management concept for admissions, billing, doctor coordination, reports, and secure administrative workflows.',
     problem:
@@ -256,7 +358,7 @@ export const projects: ProjectItem[] = [
     slug: 'kbc-quiz-platform',
     title: 'KBC Quiz Platform',
     category: 'Game Engine',
-    status: 'Featured',
+    status: 'Game Engine',
     summary:
       'A polished quiz platform with lifelines, leaderboard flow, replay support, and a responsive interface built like a product.',
     problem:
@@ -286,10 +388,10 @@ export const projects: ProjectItem[] = [
 
 export const experience: ExperienceItem[] = [
   {
-    org: 'NTPC Limited',
+    org: 'NTPC Limited, Dadri',
     role: 'Apprentice',
-    period: 'Apprenticeship',
-    location: 'India',
+    period: 'Aug 2025 - Present',
+    location: 'Dadri, India',
     bullets: [
       'Supported documentation and office automation workflows.',
       'Worked with digital processes that required clear communication and dependable follow-through.',

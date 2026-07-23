@@ -17,6 +17,15 @@
   --color-text-secondary: #94a3b8;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-display: 'Geist', 'Inter', system-ui, sans-serif;
+  --ambient-one: rgba(59, 130, 246, 0.14);
+  --ambient-two: rgba(139, 92, 246, 0.12);
+  --ambient-three: rgba(6, 182, 212, 0.11);
+}
+
+:root[data-theme='aurora'] {
+  --ambient-one: rgba(16, 185, 129, 0.13);
+  --ambient-two: rgba(124, 92, 255, 0.16);
+  --ambient-three: rgba(59, 130, 246, 0.14);
 }
 
 html {
@@ -32,9 +41,9 @@ body,
 body {
   margin: 0;
   background:
-    radial-gradient(circle at top left, rgba(59, 130, 246, 0.14), transparent 28%),
-    radial-gradient(circle at 80% 10%, rgba(139, 92, 246, 0.12), transparent 26%),
-    radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.11), transparent 30%),
+    radial-gradient(circle at top left, var(--ambient-one), transparent 28%),
+    radial-gradient(circle at 80% 10%, var(--ambient-two), transparent 26%),
+    radial-gradient(circle at 80% 80%, var(--ambient-three), transparent 30%),
     var(--color-background);
   color: var(--color-text-primary);
   font-family: var(--font-body);
@@ -76,15 +85,30 @@ a {
 }
 
 .section-padding {
-  @apply py-20 md:py-24 xl:py-32;
+  @apply py-24 md:py-28 xl:py-36;
 }
 
 .glass-card {
-  @apply rounded-[28px] border border-white/10 bg-white/5 shadow-card backdrop-blur-xl;
+  @apply rounded-[28px] border border-white/10 bg-[rgba(16,20,40,0.72)] shadow-card backdrop-blur-xl;
 }
 
 .glass-panel {
-  @apply rounded-[32px] border border-white/10 bg-slate-950/40 shadow-card backdrop-blur-2xl;
+  @apply rounded-[32px] border border-white/10 bg-[rgba(8,12,24,0.7)] shadow-card backdrop-blur-2xl;
+}
+
+.hero-starfield {
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.75) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.6) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 30% 80%, rgba(255, 255, 255, 0.55) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 60% 55%, rgba(255, 255, 255, 0.45) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 85% 70%, rgba(255, 255, 255, 0.4) 0 1px, transparent 1.5px);
+  background-size: 240px 240px;
+}
+
+.hero-orbit {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
 }
 
 .text-gradient {

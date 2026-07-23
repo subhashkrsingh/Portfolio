@@ -6,6 +6,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 
 const BlogIndexPage = lazy(() => import('@/pages/BlogIndexPage').then((module) => ({ default: module.BlogIndexPage })));
 const BlogPostPage = lazy(() => import('@/pages/BlogPostPage').then((module) => ({ default: module.BlogPostPage })));
+const ProjectsPage = lazy(() => import('@/pages/ProjectsPage').then((module) => ({ default: module.ProjectsPage })));
 
 function PageTransition({ children }: { children: ReactNode }) {
   const prefersReducedMotion = useReducedMotion();
@@ -67,6 +68,14 @@ export function AppRoutes() {
             element={
               <PageTransition>
                 <BlogPostPage />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/projects"
+            element={
+              <PageTransition>
+                <ProjectsPage />
               </PageTransition>
             }
           />

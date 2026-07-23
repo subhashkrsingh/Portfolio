@@ -1,13 +1,32 @@
 export type NavItem = {
   label: string;
   href: string;
-  kind: 'anchor' | 'route';
+  kind: 'anchor' | 'route' | 'external';
 };
 
 export type SocialLink = {
   label: string;
   href: string;
-  icon: 'github' | 'linkedin' | 'email' | 'resume';
+  icon: 'github' | 'linkedin' | 'twitter' | 'email' | 'resume';
+};
+
+export type PortfolioStat = {
+  label: string;
+  value: string;
+  iconKey: 'rocket' | 'briefcase' | 'graduation' | 'trophy';
+};
+
+export type SkillTile = {
+  title: string;
+  description?: string;
+  iconKey: 'react' | 'typescript' | 'javascript' | 'node' | 'python' | 'tailwind' | 'postgres' | 'git';
+};
+
+export type ContactDetail = {
+  label: string;
+  value: string;
+  href?: string;
+  iconKey: 'email' | 'phone' | 'location';
 };
 
 export type SkillGroup = {

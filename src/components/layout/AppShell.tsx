@@ -2,6 +2,7 @@ import { Backdrop } from '@/components/animations/Backdrop';
 import { Footer } from '@/components/sections/Footer';
 import { Navbar } from '@/components/navigation/Navbar';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
+import { BackToTopButton } from '@/components/ui/BackToTopButton';
 import type { ReactNode } from 'react';
 
 type AppShellProps = {
@@ -16,6 +17,7 @@ export function AppShell({ children }: AppShellProps) {
       <Navbar />
       <main>{children}</main>
       <Footer />
+      <BackToTopButton />
     </div>
   );
 }

@@ -10,6 +10,24 @@ type ProjectCardProps = {
   className?: string;
 };
 
+function getStatusVariant(status: string) {
+  const normalized = status.toLowerCase();
+
+  if (normalized.includes('ai')) {
+    return 'secondary';
+  }
+
+  if (normalized.includes('enterprise')) {
+    return 'outline';
+  }
+
+  if (normalized.includes('game')) {
+    return 'success';
+  }
+
+  return 'primary';
+}
+
 function ProjectThumbnail({ project }: { project: ProjectItem }) {
   const base =
     'relative overflow-hidden rounded-[24px] border border-white/10 bg-slate-900/80 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]';
@@ -201,7 +219,7 @@ export function ProjectCard({ project, onOpen, className }: ProjectCardProps) {
         <ProjectThumbnail project={project} />
         <div className="mt-5 flex items-start justify-between gap-3">
           <div>
-            <Badge variant={project.status.includes('Complete') ? 'success' : 'primary'}>{project.status}</Badge>
+            <Badge variant={getStatusVariant(project.status)}>{project.status}</Badge>
             <h3 className="mt-4 font-display text-2xl font-semibold text-white">{project.title}</h3>
             <p className="mt-2 text-sm uppercase tracking-[0.22em] text-text-secondary">
               {project.category}
