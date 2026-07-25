@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/Button';
-import { navItems, site } from '@/data/content';
+import { navItems } from '@/data/content';
 import { useActiveSection } from '@/hooks/useActiveSection';
 import { useScrollDirection } from '@/hooks/useScrollDirection';
 import { cn } from '@/utils/cn';
@@ -35,12 +35,12 @@ export function Navbar() {
   }, [activeSection, location.pathname]);
   const sectionActive = activeId === 'blog' ? null : activeId;
 
-  const hideNavbar = scrollDirection === 'down' && window.scrollY > 120;
+  const hideNavbar = typeof window !== 'undefined' && scrollDirection === 'down' && window.scrollY > 120;
 
   return (
     <>
       <motion.header
-        className="fixed left-0 top-0 z-[60] w-full px-3 pt-3 md:px-5"
+        className="fixed inset-x-0 top-6 z-[60] px-4 sm:px-6 lg:px-8"
         initial={false}
         animate={{
           y: hideNavbar ? -120 : 0,
@@ -49,27 +49,21 @@ export function Navbar() {
         transition={{ duration: 0.24, ease: 'easeOut' }}
       >
         <div className="section-shell">
-          <div className="rounded-[28px] border border-white/10 bg-[rgba(8,12,24,0.48)] backdrop-blur-2xl">
-            <div className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-4 py-3 md:px-6">
-              <Link to="/" className="group flex items-center gap-3">
-                <div className="flex h-11 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 text-sm font-bold text-white transition-colors group-hover:bg-white/10">
-                  <span>SUBHASH.</span>
-                  <span className="h-2 w-2 rounded-full bg-secondary shadow-[0_0_0_6px_rgba(124,92,255,0.15)]" />
-                </div>
-                <div className="hidden sm:block">
-                  <p className="font-display text-sm font-semibold text-white">{site.role}</p>
-                </div>
+          <div className="glass-panel mx-auto max-w-[1200px] rounded-full px-4 py-3 shadow-[0_18px_50px_rgba(2,6,23,0.14)] md:px-6 md:py-4">
+            <div className="flex items-center justify-between gap-3">
+              <Link
+                to="/"
+                className="group inline-flex items-center gap-3 rounded-full border border-border bg-[var(--color-card)] px-4 py-2.5 text-sm font-semibold text-text-primary shadow-[0_10px_28px_rgba(2,6,23,0.08)] transition-all duration-300 hover:border-primary/30 hover:bg-[var(--color-surface)]"
+              >
+                <span className="font-display text-[0.78rem] font-black tracking-[0.34em]">SUBHASH</span>
+                <span className="h-2.5 w-2.5 rounded-full bg-gradient-to-r from-primary via-secondary to-accent shadow-[0_0_0_6px_rgba(139,92,246,0.14)] transition-transform duration-300 group-hover:scale-110" />
               </Link>
 
               <nav className="hidden items-center gap-1 xl:flex">
                 {navItems.map((item) => {
                   const isActive = isNavItemActive(item, location.pathname, sectionActive);
                   const href = getNavHref(item, location.pathname);
-
-                  const classes = cn(
-                    'rounded-full px-4 py-2 text-sm font-medium transition-colors',
-                    isActive ? 'bg-white/10 text-white' : 'text-text-secondary hover:bg-white/5 hover:text-white',
-                  );
+                  const classes = cn('nav-link', isActive && 'nav-link-active');
 
                   return item.kind === 'route' ? (
                     <Link key={item.label} to={href} className={classes}>
@@ -89,7 +83,7 @@ export function Navbar() {
 
               <div className="hidden items-center gap-3 md:flex">
                 <ThemeToggle />
-                <Button href="#contact" variant="primary" className="px-4 py-2">
+                <Button href="#contact" variant="primary" className="px-5 py-2.5">
                   <Mail className="h-4 w-4" />
                   Let&apos;s Connect
                 </Button>
@@ -100,7 +94,7 @@ export function Navbar() {
           </div>
         </div>
       </motion.header>
-      <div className="h-24 md:h-28" />
+      <div className="h-28 md:h-32" />
     </>
   );
 }

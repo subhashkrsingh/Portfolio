@@ -14,6 +14,7 @@ export function ExperienceSection() {
           <SectionHeading
             eyebrow="Experience"
             title="A timeline of practical engineering"
+            highlight="timeline"
             description="The apprenticeship experience that shaped how I think about documentation, process, and dependable delivery."
           />
         </Reveal>
@@ -22,7 +23,7 @@ export function ExperienceSection() {
           {experience.map((item, index) => (
             <Reveal key={`${item.org}-${item.role}`} delay={index * 0.05}>
               <motion.article
-                className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[rgba(8,12,24,0.7)] p-6 shadow-card backdrop-blur-2xl md:p-8"
+                className="glass-panel relative overflow-hidden p-6 md:p-8"
                 whileHover={prefersReducedMotion ? undefined : { y: -4 }}
                 transition={{ duration: 0.2 }}
               >

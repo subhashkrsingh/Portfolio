@@ -10,11 +10,11 @@ type BadgeProps = {
 };
 
 const badgeStyles: Record<BadgeVariant, string> = {
-  primary: 'border-primary/30 bg-primary/12 text-blue-100',
-  secondary: 'border-secondary/30 bg-secondary/12 text-violet-100',
-  success: 'border-success/30 bg-success/12 text-emerald-100',
-  warning: 'border-warning/30 bg-warning/12 text-amber-100',
-  outline: 'border-white/10 bg-white/5 text-text-secondary',
+  primary: 'border-primary/30 bg-primary/12 text-primary',
+  secondary: 'border-secondary/30 bg-secondary/12 text-secondary',
+  success: 'border-success/30 bg-success/12 text-success',
+  warning: 'border-warning/30 bg-warning/12 text-warning',
+  outline: 'border-border bg-[var(--color-card)] text-text-secondary',
 };
 
 export function Badge({ children, variant = 'outline', className }: BadgeProps) {

@@ -2,21 +2,21 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { MoonStar, SunMedium } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-type ThemeMode = 'midnight' | 'aurora';
+type ThemeMode = 'dark' | 'light';
 
 const storageKey = 'subhash-portfolio-theme';
 
 function readInitialTheme(): ThemeMode {
   if (typeof window === 'undefined') {
-    return 'midnight';
+    return 'dark';
   }
 
   const stored = window.localStorage.getItem(storageKey);
-  if (stored === 'aurora' || stored === 'midnight') {
+  if (stored === 'light' || stored === 'dark') {
     return stored;
   }
 
-  return 'midnight';
+  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
 }
 
 export function ThemeToggle() {
@@ -25,19 +25,25 @@ export function ThemeToggle() {
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
     window.localStorage.setItem(storageKey, theme);
+
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeMeta) {
+      themeMeta.setAttribute('content', theme === 'light' ? '#ffffff' : '#060816');
+    }
   }, [theme]);
 
   return (
     <motion.button
       type="button"
-      aria-label={`Switch theme to ${theme === 'midnight' ? 'aurora' : 'midnight'}`}
-      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-colors hover:border-white/20 hover:bg-white/10"
+      aria-label={`Switch theme to ${theme === 'dark' ? 'light' : 'dark'}`}
+      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-[var(--color-card)] text-text-primary shadow-[0_12px_28px_rgba(2,6,23,0.08)] transition-all duration-300 hover:border-primary/30 hover:bg-[var(--color-surface)]"
       whileHover={prefersReducedMotion ? undefined : { y: -2, scale: 1.02 }}
       whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
-      onClick={() => setTheme((current) => (current === 'midnight' ? 'aurora' : 'midnight'))}
+      onClick={() => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))}
     >
-      {theme === 'midnight' ? <MoonStar className="h-4 w-4" /> : <SunMedium className="h-4 w-4" />}
+      {theme === 'dark' ? <MoonStar className="h-4 w-4" /> : <SunMedium className="h-4 w-4" />}
     </motion.button>
   );
 }

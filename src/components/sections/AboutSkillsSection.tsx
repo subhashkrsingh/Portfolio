@@ -40,7 +40,7 @@ export function AboutSkillsSection() {
             <p className="text-xs font-semibold uppercase tracking-[0.34em] text-text-secondary">
               About Me
             </p>
-            <h2 className="mt-4 max-w-xl font-display text-4xl font-semibold leading-[1.05] text-white sm:text-5xl">
+            <h2 className="mt-4 max-w-xl font-display text-4xl font-black leading-[1.02] tracking-[-0.05em] text-text-primary sm:text-5xl lg:text-6xl">
               Turning Ideas Into <span className="text-gradient">Intelligent Solutions</span>
             </h2>
             <p className="mt-6 max-w-xl text-base leading-8 text-text-secondary sm:text-lg">
@@ -97,16 +97,16 @@ export function AboutSkillsSection() {
                 return (
                   <motion.div
                     key={tile.title}
-                    className="group rounded-[22px] border border-white/10 bg-white/5 px-4 py-4 transition-shadow hover:shadow-[0_0_0_1px_rgba(124,92,255,0.14),0_0_40px_rgba(124,92,255,0.18)]"
-                    whileHover={prefersReducedMotion ? undefined : { y: -3 }}
-                    transition={{ duration: 0.18 }}
+                    className="group rounded-[22px] border border-border bg-[var(--color-card)] px-4 py-4 transition-all duration-300 hover:shadow-[0_0_0_1px_rgba(139,92,246,0.12),0_0_40px_rgba(139,92,246,0.16)]"
+                    whileHover={prefersReducedMotion ? undefined : { y: -4, scale: 1.01 }}
+                    transition={{ duration: 0.2 }}
                   >
                     <div className="flex items-start gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-slate-950/40 text-white">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-border bg-gradient-to-br from-primary/15 via-secondary/15 to-accent/15 text-text-primary transition-transform duration-300 group-hover:scale-110">
                         <Icon className="h-4 w-4" />
                       </div>
                       <div>
-                        <p className="font-medium text-white">{tile.title}</p>
+                        <p className="font-medium text-text-primary">{tile.title}</p>
                         <p className="mt-1 text-xs leading-6 text-text-secondary">{tile.description}</p>
                       </div>
                     </div>
@@ -119,9 +119,9 @@ export function AboutSkillsSection() {
               {['Product ready', 'AI informed', 'Detail driven'].map((item) => (
                 <div
                   key={item}
-                  className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-text-secondary"
+                  className="rounded-2xl border border-border bg-[var(--color-card)] px-4 py-3 text-sm text-text-secondary"
                 >
-                  <span className="block text-white">{item}</span>
+                  <span className="block text-text-primary">{item}</span>
                   <span className="mt-1 block text-xs leading-6">
                     Designed to ship thoughtful interfaces and production-grade product logic.
                   </span>

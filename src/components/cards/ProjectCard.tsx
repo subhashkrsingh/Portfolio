@@ -30,12 +30,12 @@ function getStatusVariant(status: string) {
 
 function ProjectThumbnail({ project }: { project: ProjectItem }) {
   const base =
-    'relative overflow-hidden rounded-[24px] border border-white/10 bg-slate-900/80 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]';
+    'relative overflow-hidden rounded-[24px] border border-border bg-[var(--color-surface)] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]';
 
   if (project.thumbnailVariant === 'market') {
     return (
       <div className={cn(base, 'min-h-[240px]')}>
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/12" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/12 opacity-90" />
         <div className="relative flex h-full flex-col">
           <div className="flex items-center justify-between text-xs text-text-secondary">
             <span>Market pulse</span>
@@ -55,7 +55,7 @@ function ProjectThumbnail({ project }: { project: ProjectItem }) {
               <p className="mt-2 text-lg font-semibold text-sky-100">Cached</p>
             </div>
           </div>
-          <div className="mt-4 flex-1 rounded-[22px] border border-white/10 bg-black/20 p-4">
+          <div className="mt-4 flex-1 rounded-[22px] border border-border bg-[var(--color-card)] p-4">
             <div className="flex h-full items-end gap-2">
               {[28, 42, 35, 60, 48, 75, 58, 86, 68, 92].map((height, index) => (
                 <motion.div
@@ -75,15 +75,15 @@ function ProjectThumbnail({ project }: { project: ProjectItem }) {
   if (project.thumbnailVariant === 'coach') {
     return (
       <div className={cn(base, 'min-h-[240px]')}>
-        <div className="absolute inset-0 bg-gradient-to-br from-secondary/18 via-transparent to-primary/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary/18 via-transparent to-primary/10 opacity-90" />
         <div className="relative grid h-full gap-4">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs uppercase tracking-[0.24em] text-text-secondary">AI Coach</p>
               <p className="mt-1 text-lg font-semibold text-white">Daily plan</p>
             </div>
-            <div className="h-16 w-16 rounded-full border border-white/10 bg-white/5 p-2">
-              <div className="flex h-full w-full items-center justify-center rounded-full border border-accent/30 bg-black/30">
+            <div className="h-16 w-16 rounded-full border border-border bg-[var(--color-card)] p-2">
+              <div className="flex h-full w-full items-center justify-center rounded-full border border-accent/30 bg-[var(--color-surface)]">
                 <span className="text-sm font-semibold text-white">65%</span>
               </div>
             </div>
@@ -98,7 +98,7 @@ function ProjectThumbnail({ project }: { project: ProjectItem }) {
               <p className="mt-2 text-sm font-medium text-white">Upper body focus</p>
             </div>
           </div>
-          <div className="grid flex-1 gap-3 rounded-[22px] border border-white/10 bg-black/20 p-4">
+          <div className="grid flex-1 gap-3 rounded-[22px] border border-border bg-[var(--color-card)] p-4">
             <div className="flex items-start gap-3">
               <div className="mt-1 h-3 w-3 rounded-full bg-success" />
               <p className="text-sm text-text-secondary">Calculate BMI and adapt the plan.</p>
@@ -120,7 +120,7 @@ function ProjectThumbnail({ project }: { project: ProjectItem }) {
   if (project.thumbnailVariant === 'hospital') {
     return (
       <div className={cn(base, 'min-h-[240px]')}>
-        <div className="absolute inset-0 bg-gradient-to-br from-accent/16 via-transparent to-primary/10" />
+        <div className="absolute inset-0 bg-gradient-to-br from-accent/16 via-transparent to-primary/10 opacity-90" />
         <div className="relative grid h-full gap-3">
           <div className="flex items-center justify-between">
             <span className="text-xs uppercase tracking-[0.24em] text-text-secondary">IPD Overview</span>
@@ -157,7 +157,7 @@ function ProjectThumbnail({ project }: { project: ProjectItem }) {
 
   return (
     <div className={cn(base, 'min-h-[240px]')}>
-      <div className="absolute inset-0 bg-gradient-to-br from-secondary/18 via-transparent to-primary/10" />
+      <div className="absolute inset-0 bg-gradient-to-br from-secondary/18 via-transparent to-primary/10 opacity-90" />
       <div className="relative grid h-full gap-3">
         <div className="flex items-center justify-between">
           <span className="text-xs uppercase tracking-[0.24em] text-text-secondary">Game engine</span>
@@ -207,9 +207,9 @@ export function ProjectCard({ project, onOpen, className }: ProjectCardProps) {
 
   return (
     <motion.article
-      className={cn('glass-card group overflow-hidden p-5', className)}
-      whileHover={prefersReducedMotion ? undefined : { y: -6 }}
-      transition={{ duration: 0.22 }}
+      className={cn('glass-card group overflow-hidden p-5 transition-shadow duration-300 hover:shadow-glow', className)}
+      whileHover={prefersReducedMotion ? undefined : { y: -10, scale: 1.01 }}
+      transition={{ duration: 0.24, ease: 'easeOut' }}
     >
       <button
         type="button"
@@ -220,19 +220,21 @@ export function ProjectCard({ project, onOpen, className }: ProjectCardProps) {
         <div className="mt-5 flex items-start justify-between gap-3">
           <div>
             <Badge variant={getStatusVariant(project.status)}>{project.status}</Badge>
-            <h3 className="mt-4 font-display text-2xl font-semibold text-white">{project.title}</h3>
+            <h3 className="mt-4 font-display text-2xl font-black tracking-[-0.03em] text-text-primary transition-colors duration-300 group-hover:text-primary">
+              {project.title}
+            </h3>
             <p className="mt-2 text-sm uppercase tracking-[0.22em] text-text-secondary">
               {project.category}
             </p>
           </div>
-          <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-text-secondary transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-text-secondary transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
         </div>
         <p className="mt-4 text-sm leading-7 text-text-secondary">{project.summary}</p>
         <div className="mt-5 flex flex-wrap gap-2">
           {project.stack.slice(0, 4).map((item) => (
             <span
               key={item}
-              className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-text-secondary"
+              className="rounded-full border border-border bg-[var(--color-card)] px-3 py-1 text-xs font-medium text-text-secondary transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-primary/30 group-hover:bg-primary/10 group-hover:text-text-primary"
             >
               {item}
             </span>

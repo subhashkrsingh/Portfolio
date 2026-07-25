@@ -20,6 +20,7 @@ export function ProjectsSection() {
           <SectionHeading
             eyebrow="Featured Projects"
             title="Built like product case studies"
+            highlight="product"
             description="Three selected builds that show product thinking, AI capability, and production-minded execution."
             action={
               <Button href="/projects" variant="outline">

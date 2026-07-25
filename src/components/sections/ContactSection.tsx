@@ -105,7 +105,7 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="section-shell section-padding scroll-mt-32">
-      <div className="section-content rounded-[36px] border border-white/10 bg-[rgba(8,12,24,0.72)] p-6 shadow-card backdrop-blur-2xl md:p-8 xl:p-10">
+      <div className="section-content glass-panel rounded-[36px] p-6 md:p-8 xl:p-10">
         <div className="grid gap-10 xl:grid-cols-[0.92fr_1.08fr]">
           <Reveal>
             <div className="flex h-full flex-col justify-between">

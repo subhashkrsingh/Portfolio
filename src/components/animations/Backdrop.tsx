@@ -8,7 +8,7 @@ export function Backdrop() {
       aria-hidden="true"
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-mesh opacity-70" />
+      <div className="backdrop-mesh absolute inset-0" />
       <div className="absolute inset-0 surface-line opacity-25" />
       <div className="noise-layer absolute inset-0" />
       <motion.div
@@ -21,7 +21,7 @@ export function Backdrop() {
               }
         }
         transition={{ duration: 16, repeat: Number.POSITIVE_INFINITY, ease: 'easeInOut' }}
-        className="absolute left-[8%] top-[14%] h-72 w-72 rounded-full bg-primary/15 blur-3xl"
+        className="backdrop-blob backdrop-blob-primary absolute left-[8%] top-[14%] h-72 w-72 rounded-full"
       />
       <motion.div
         animate={
@@ -33,7 +33,7 @@ export function Backdrop() {
               }
         }
         transition={{ duration: 18, repeat: Number.POSITIVE_INFINITY, ease: 'easeInOut' }}
-        className="absolute right-[4%] top-[12%] h-80 w-80 rounded-full bg-secondary/15 blur-3xl"
+        className="backdrop-blob backdrop-blob-secondary absolute right-[4%] top-[12%] h-80 w-80 rounded-full"
       />
       <motion.div
         animate={
@@ -45,7 +45,7 @@ export function Backdrop() {
               }
         }
         transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: 'easeInOut' }}
-        className="absolute bottom-[8%] left-[36%] h-96 w-96 rounded-full bg-accent/12 blur-3xl"
+        className="backdrop-blob backdrop-blob-accent absolute bottom-[8%] left-[36%] h-96 w-96 rounded-full"
       />
     </div>
   );

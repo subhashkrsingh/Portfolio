@@ -3,12 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#050816" />
+    <meta name="theme-color" content="#060816" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      (() => {
+        const storageKey = 'subhash-portfolio-theme';
+        const root = document.documentElement;
+
+        try {
+          const stored = window.localStorage.getItem(storageKey);
+          const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+          const theme = stored === 'light' || stored === 'dark' ? stored : prefersLight ? 'light' : 'dark';
+
+          root.dataset.theme = theme;
+          root.style.colorScheme = theme;
+
+          const themeMeta = document.querySelector('meta[name="theme-color"]');
+          if (themeMeta) {
+            themeMeta.setAttribute('content', theme === 'light' ? '#ffffff' : '#060816');
+          }
+        } catch {
+          root.dataset.theme = 'dark';
+          root.style.colorScheme = 'dark';
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
     <title>Subhash Kumar Singh | AI Engineer & Full Stack Developer</title>

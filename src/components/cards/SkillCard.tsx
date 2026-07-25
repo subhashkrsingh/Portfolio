@@ -25,17 +25,24 @@ export function SkillCard({ skill, className }: SkillCardProps) {
 
   return (
     <motion.article
-      className={cn('glass-card group p-6 transition-shadow duration-300 hover:shadow-glow', className)}
-      whileHover={prefersReducedMotion ? undefined : { y: -5, rotateX: 2, rotateY: -2 }}
-      transition={{ duration: 0.22 }}
+      className={cn(
+        'glass-card group relative overflow-hidden p-6 transition-shadow duration-300 hover:shadow-glow',
+        className,
+      )}
+      whileHover={prefersReducedMotion ? undefined : { y: -8, rotateX: 3, rotateY: -3, scale: 1.01 }}
+      transition={{ duration: 0.24, ease: 'easeOut' }}
     >
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white">
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-border bg-[var(--color-card)] text-text-primary transition-transform duration-300 group-hover:scale-110 group-hover:border-primary/30">
             <Icon className="h-5 w-5" />
           </div>
           <div>
-            <h3 className="font-display text-xl font-semibold text-white">{skill.category}</h3>
+            <h3 className="font-display text-xl font-bold tracking-[-0.03em] text-text-primary">
+              {skill.category}
+            </h3>
             <p className="text-sm text-text-secondary">{skill.summary}</p>
           </div>
         </div>
@@ -46,7 +53,7 @@ export function SkillCard({ skill, className }: SkillCardProps) {
         {skill.items.map((item) => (
           <span
             key={item}
-            className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-text-secondary"
+            className="rounded-full border border-border bg-[var(--color-card)] px-3 py-1 text-xs font-medium text-text-secondary transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-primary/30 group-hover:bg-primary/10 group-hover:text-text-primary"
           >
             {item}
           </span>

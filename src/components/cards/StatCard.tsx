@@ -13,12 +13,15 @@ export function StatCard({ label, value, note, className }: StatCardProps) {
 
   return (
     <motion.div
-      className={cn('glass-card p-5', className)}
-      whileHover={prefersReducedMotion ? undefined : { y: -4 }}
-      transition={{ duration: 0.18 }}
+      className={cn('glass-card group relative overflow-hidden p-5', className)}
+      whileHover={prefersReducedMotion ? undefined : { y: -6, scale: 1.01 }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
     >
-      <p className="text-xs font-medium uppercase tracking-[0.28em] text-text-secondary">{label}</p>
-      <p className="mt-3 font-display text-2xl font-semibold text-white">{value}</p>
+      <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-accent/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <p className="relative text-xs font-medium uppercase tracking-[0.28em] text-text-secondary">{label}</p>
+      <p className="relative mt-3 font-display text-2xl font-black tracking-[-0.03em] text-text-primary">
+        {value}
+      </p>
       {note ? <p className="mt-2 text-sm leading-6 text-text-secondary">{note}</p> : null}
     </motion.div>
   );

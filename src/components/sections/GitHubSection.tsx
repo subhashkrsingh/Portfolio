@@ -98,6 +98,7 @@ export function GitHubSection() {
           <SectionHeading
             eyebrow="GitHub"
             title="Live public activity"
+            highlight="activity"
             description="This panel fetches public GitHub data and presents it like a lightweight engineering dashboard."
             action={
               <Button href={`https://github.com/${site.githubUsername}`} variant="outline" target="_blank" rel="noreferrer">

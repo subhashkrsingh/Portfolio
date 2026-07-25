@@ -34,14 +34,14 @@ export function MobileDrawer({ open, onOpenChange }: MobileDrawerProps) {
       <AnimatePresence>
         {open ? (
           <motion.div
-            className="fixed inset-0 z-[80] bg-slate-950/75 backdrop-blur-md md:hidden"
+            className="fixed inset-0 z-[80] bg-slate-950/65 backdrop-blur-md md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onMouseDown={() => onOpenChange(false)}
           >
             <motion.div
-              className="absolute right-0 top-0 h-full w-[88%] max-w-sm border-l border-white/10 bg-[rgba(5,8,22,0.96)] p-5 shadow-2xl"
+              className="absolute right-0 top-0 h-full w-[88%] max-w-sm border-l border-border bg-[var(--color-surface)] p-5 shadow-[0_24px_80px_rgba(2,6,23,0.3)]"
               initial={prefersReducedMotion ? false : { x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -50,7 +50,7 @@ export function MobileDrawer({ open, onOpenChange }: MobileDrawerProps) {
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-display text-lg font-semibold text-white">SUBHASH.</p>
+                  <p className="font-display text-lg font-black tracking-[0.24em] text-text-primary">SUBHASH</p>
                   <p className="text-xs uppercase tracking-[0.24em] text-text-secondary">{site.role}</p>
                 </div>
                 <div className="flex items-center gap-2">
@@ -58,7 +58,7 @@ export function MobileDrawer({ open, onOpenChange }: MobileDrawerProps) {
                   <button
                     type="button"
                     onClick={() => onOpenChange(false)}
-                    className="rounded-full border border-white/10 bg-white/5 p-2 text-text-primary transition-colors hover:bg-white/10"
+                    className="rounded-full border border-border bg-[var(--color-card)] p-2 text-text-primary transition-all duration-300 hover:border-primary/30 hover:bg-[var(--color-surface)]"
                   >
                     <X className="h-4 w-4" />
                   </button>
@@ -76,10 +76,10 @@ export function MobileDrawer({ open, onOpenChange }: MobileDrawerProps) {
                   const href = getNavHref(item, location.pathname);
 
                   const classes = cn(
-                    'rounded-2xl border px-4 py-3 text-sm font-medium transition-colors',
+                    'rounded-2xl border px-4 py-3 text-sm font-medium transition-all duration-300',
                     isActive
-                      ? 'border-primary/30 bg-primary/14 text-white'
-                      : 'border-white/10 bg-white/5 text-text-secondary hover:border-white/20 hover:bg-white/10',
+                      ? 'border-primary/30 bg-primary/14 text-text-primary shadow-[0_10px_24px_rgba(91,92,255,0.12)]'
+                      : 'border-border bg-[var(--color-card)] text-text-secondary hover:border-primary/30 hover:bg-[var(--color-surface)] hover:text-text-primary',
                   );
 
                   if (item.kind === 'route') {

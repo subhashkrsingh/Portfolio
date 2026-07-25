@@ -13,7 +13,7 @@ export function BackToTopButton() {
         <motion.button
           type="button"
           aria-label="Back to top"
-          className="fixed bottom-6 right-6 z-[65] inline-flex h-12 w-12 items-center justify-center rounded-full border border-secondary/30 bg-secondary/20 text-white shadow-[0_0_0_1px_rgba(124,92,255,0.12),0_0_40px_rgba(124,92,255,0.28)] backdrop-blur-xl transition-colors hover:bg-secondary/30"
+          className="fixed bottom-6 right-6 z-[65] inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-[var(--color-card)] text-text-primary shadow-[0_12px_30px_rgba(2,6,23,0.12)] backdrop-blur-xl transition-all duration-300 hover:border-primary/30 hover:bg-[var(--color-surface)]"
           initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.9, y: 16 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 16 }}

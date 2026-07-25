@@ -18,25 +18,27 @@ export function StatsSection() {
       <div className="section-content">
         <Reveal>
           <div className="glass-card overflow-hidden">
-            <div className="grid divide-y divide-white/10 md:grid-cols-4 md:divide-x md:divide-y-0">
+            <div className="grid divide-y divide-border md:grid-cols-4 md:divide-x md:divide-y-0">
               {portfolioStats.map((item, index) => {
                 const Icon = iconMap[item.iconKey];
 
                 return (
                   <motion.div
                     key={item.label}
-                    className="flex items-center gap-4 px-6 py-6 md:px-8"
-                    whileHover={prefersReducedMotion ? undefined : { y: -2 }}
-                    transition={{ duration: 0.18 }}
+                    className="group flex items-center gap-4 px-6 py-6 transition-all duration-300 md:px-8"
+                    whileHover={prefersReducedMotion ? undefined : { y: -4, scale: 1.01 }}
+                    transition={{ duration: 0.2 }}
                   >
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-border bg-gradient-to-br from-primary/15 via-secondary/12 to-accent/12 text-text-primary transition-transform duration-300 group-hover:scale-110">
                       <Icon className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="text-xs font-medium uppercase tracking-[0.28em] text-text-secondary">
+                      <p className="text-xs font-medium uppercase tracking-[0.28em] text-secondary">
                         {item.label}
                       </p>
-                      <p className="mt-2 font-display text-2xl font-semibold text-white">{item.value}</p>
+                      <p className="mt-2 font-display text-2xl font-black tracking-[-0.03em] text-text-primary">
+                        {item.value}
+                      </p>
                     </div>
                   </motion.div>
                 );

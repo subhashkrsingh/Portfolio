@@ -12,6 +12,7 @@ export function SkillsSection() {
           <SectionHeading
             eyebrow="Skills"
             title="Organized by expertise"
+            highlight="expertise"
             description="A modular view of the stack I use today and the tools I am actively building toward."
           />
         </Reveal>
