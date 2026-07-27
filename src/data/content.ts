@@ -15,8 +15,8 @@ import type {
 } from '@/types/content';
 
 const siteUrl = (import.meta.env.VITE_SITE_URL || 'http://localhost:5173').replace(/\/$/, '');
-const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || 'hello@example.com';
-const githubUsername = import.meta.env.VITE_GITHUB_USERNAME || 'subhash-kumar-singh';
+const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || 'subhashkr2026singh@gmail.com';
+const githubUsername = import.meta.env.VITE_GITHUB_USERNAME || 'subhashkrsingh';
 
 export const site = {
   name: 'Subhash Kumar Singh',
