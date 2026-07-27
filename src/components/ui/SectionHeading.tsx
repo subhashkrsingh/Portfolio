@@ -36,15 +36,15 @@ function renderTitle(title: string, highlight?: string) {
 
 export function SectionHeading({ eyebrow, title, description, highlight, className, action }: SectionHeadingProps) {
   return (
-    <div className={cn('flex flex-col gap-5 md:flex-row md:items-end md:justify-between', className)}>
+    <div className={cn('flex flex-col gap-4 md:flex-row md:items-end md:justify-between', className)}>
       <div className="max-w-3xl">
-        <Badge variant="secondary" className="mb-5">
+        <Badge variant="secondary" className="mb-4">
           {eyebrow}
         </Badge>
         <h2 className="max-w-3xl font-display text-4xl font-black tracking-[-0.04em] text-text-primary sm:text-5xl lg:text-6xl">
           {renderTitle(title, highlight)}
         </h2>
-        <p className="mt-4 max-w-2xl text-base leading-8 text-text-secondary sm:text-lg">
+        <p className="mt-3 max-w-2xl text-base leading-8 text-text-secondary sm:text-lg">
           {description}
         </p>
       </div>

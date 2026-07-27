@@ -106,7 +106,7 @@ export function ContactSection() {
   return (
     <section id="contact" className="section-shell section-padding scroll-mt-32">
       <div className="section-content glass-panel rounded-[36px] p-6 md:p-8 xl:p-10">
-        <div className="grid gap-10 xl:grid-cols-[0.92fr_1.08fr]">
+        <div className="grid gap-6 xl:grid-cols-[0.92fr_1.08fr]">
           <Reveal>
             <div className="flex h-full flex-col justify-between">
               <div className="max-w-xl">
@@ -116,13 +116,13 @@ export function ContactSection() {
                 <h2 className="mt-4 font-display text-4xl font-semibold leading-[1.05] text-white sm:text-5xl">
                   Let&apos;s build something <span className="text-gradient">production-ready</span>
                 </h2>
-                <p className="mt-6 max-w-xl text-base leading-8 text-text-secondary sm:text-lg">
+                <p className="mt-5 max-w-xl text-base leading-8 text-text-secondary sm:text-lg">
                   If you need an AI engineer who can move from product thinking to execution without losing
                   quality, this is the right place to start.
                 </p>
               </div>
 
-              <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              <div className="mt-6 grid gap-3 sm:grid-cols-3">
                 {contactDetails.map((detail) => {
                   const Icon = contactIconMap[detail.iconKey];
 
@@ -163,7 +163,7 @@ export function ContactSection() {
                 })}
               </div>
 
-              <div className="mt-6 flex flex-wrap items-center gap-3">
+              <div className="mt-4 flex flex-wrap items-center gap-3">
                 {contactSocialLinks.map((link) => {
                   const Icon = socialIconMap[link.icon as keyof typeof socialIconMap];
 
@@ -187,7 +187,7 @@ export function ContactSection() {
                 </Button>
               </div>
 
-              <div className="mt-6 rounded-[28px] border border-secondary/20 bg-secondary/10 p-5">
+              <div className="mt-4 rounded-[28px] border border-secondary/20 bg-secondary/10 p-5">
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-violet-100">
                   Preferred collaborations
                 </p>
@@ -290,9 +290,13 @@ export function ContactSection() {
                   )}
                   {status === 'success' ? 'Message sent' : 'Send message'}
                 </Button>
-                <p className="text-sm text-text-secondary">
-                  Preferred email: {site.contactEmail}
-                </p>
+                <a
+                href={contactDetails[0].href}
+                className= "text-sm text-text-secondary hover:text-white"
+                >
+                Preferred email: {site.contactEmail}
+
+                </a>
               </div>
 
               {status === 'success' ? (

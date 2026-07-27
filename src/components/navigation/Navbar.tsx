@@ -40,7 +40,7 @@ export function Navbar() {
   return (
     <>
       <motion.header
-        className="fixed inset-x-0 top-6 z-[60] px-4 sm:px-6 lg:px-8"
+        className="fixed inset-x-0 top-4 z-[60] px-4 sm:px-6 lg:px-8"
         initial={false}
         animate={{
           y: hideNavbar ? -120 : 0,
@@ -94,7 +94,7 @@ export function Navbar() {
           </div>
         </div>
       </motion.header>
-      <div className="h-28 md:h-32" />
+      <div className="h-20 md:h-24" />
     </>
   );
 }

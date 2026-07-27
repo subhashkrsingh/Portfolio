@@ -14,9 +14,9 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="section-shell pb-8 pt-4">
-      <div className="section-content border-t border-border pt-6">
-        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+    <footer className="section-shell pb-6 pt-2">
+      <div className="section-content border-t border-border pt-4">
+        <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.34em] text-text-secondary">
               {site.name}
@@ -46,7 +46,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-6 flex flex-col gap-2 border-t border-border pt-5 text-xs text-text-secondary sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-4 flex flex-col gap-2 border-t border-border pt-4 text-xs text-text-secondary sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {site.name}. Built using React + TypeScript.
           </p>

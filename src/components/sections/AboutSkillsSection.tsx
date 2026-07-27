@@ -30,7 +30,7 @@ export function AboutSkillsSection() {
 
   return (
     <section id="about" className="section-shell section-padding scroll-mt-32">
-      <div className="section-content grid gap-6 lg:grid-cols-[0.94fr_1.06fr]">
+      <div className="section-content grid gap-5 lg:grid-cols-[0.94fr_1.06fr]">
         <Reveal>
           <motion.article
             className="glass-panel h-full p-6 md:p-8"
@@ -43,11 +43,11 @@ export function AboutSkillsSection() {
             <h2 className="mt-4 max-w-xl font-display text-4xl font-black leading-[1.02] tracking-[-0.05em] text-text-primary sm:text-5xl lg:text-6xl">
               Turning Ideas Into <span className="text-gradient">Intelligent Solutions</span>
             </h2>
-            <p className="mt-6 max-w-xl text-base leading-8 text-text-secondary sm:text-lg">
+            <p className="mt-5 max-w-xl text-base leading-8 text-text-secondary sm:text-lg">
               {site.summary}
             </p>
 
-            <div className="mt-8 grid gap-5">
+            <div className="mt-6 grid gap-4">
               {aboutTimeline.map((item, index) => (
                 <div key={item.title} className="relative pl-6">
                   <span className="absolute left-0 top-2 h-3 w-3 rounded-full bg-secondary shadow-[0_0_0_6px_rgba(124,92,255,0.12)]" />
@@ -60,7 +60,7 @@ export function AboutSkillsSection() {
               ))}
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap gap-3">
               <Button href="#contact" variant="primary">
                 Let&apos;s Connect
                 <ArrowRight className="h-4 w-4" />
@@ -90,7 +90,7 @@ export function AboutSkillsSection() {
               </Button>
             </div>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {skillTiles.map((tile) => {
                 const Icon = iconMap[tile.iconKey];
 
@@ -115,7 +115,7 @@ export function AboutSkillsSection() {
               })}
             </div>
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            <div className="mt-4 grid gap-3 sm:grid-cols-3">
               {['Product ready', 'AI informed', 'Detail driven'].map((item) => (
                 <div
                   key={item}

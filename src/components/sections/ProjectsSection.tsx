@@ -31,7 +31,7 @@ export function ProjectsSection() {
           />
         </Reveal>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-8 grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
           {featuredProjects.map((project, index) => (
             <Reveal key={project.slug} delay={index * 0.04}>
               <ProjectCard project={project} onOpen={setSelectedProject} />

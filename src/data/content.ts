@@ -17,6 +17,8 @@ import type {
 const siteUrl = (import.meta.env.VITE_SITE_URL || 'http://localhost:5173').replace(/\/$/, '');
 const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || 'subhashkr2026singh@gmail.com';
 const githubUsername = import.meta.env.VITE_GITHUB_USERNAME || 'subhashkrsingh';
+const gmailComposeUrl = (email: string) =>
+  `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}`;
 
 export const site = {
   name: 'Subhash Kumar Singh',
@@ -64,7 +66,7 @@ export const socialLinks: SocialLink[] = [
   },
   {
     label: 'Email',
-    href: `mailto:${contactEmail}`,
+    href: gmailComposeUrl(contactEmail),
     icon: 'email',
   },
   {
@@ -151,7 +153,7 @@ export const contactDetails: ContactDetail[] = [
   {
     label: 'Email',
     value: contactEmail,
-    href: `mailto:${contactEmail}`,
+    href: gmailComposeUrl(contactEmail),
     iconKey: 'email',
   },
   {

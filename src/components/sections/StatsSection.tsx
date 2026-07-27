@@ -14,7 +14,7 @@ export function StatsSection() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section className="section-shell pb-24 md:pb-28 xl:pb-36">
+    <section className="section-shell pb-16 md:pb-20 xl:pb-24">
       <div className="section-content">
         <Reveal>
           <div className="glass-card overflow-hidden">

@@ -36,7 +36,7 @@ export function HeroSection() {
 
   return (
     <section id="home" className="section-shell section-padding scroll-mt-32">
-      <div className="section-content hero-stage relative overflow-hidden rounded-[40px] border border-border bg-[var(--color-surface)] px-6 py-10 shadow-card sm:px-8 md:px-10 md:py-14 lg:px-12 lg:py-16">
+      <div className="section-content hero-stage relative overflow-hidden rounded-[40px] border border-border bg-[var(--color-surface)] px-6 py-8 shadow-card dark:py-10 sm:px-8 md:px-10 md:py-12 dark:md:py-14 lg:px-12 lg:py-14 dark:lg:py-16">
         <div className="absolute inset-0 hero-starfield opacity-20" />
         <div className="absolute inset-0 surface-line opacity-20" />
         <div className="absolute inset-0 noise-layer" />
@@ -44,7 +44,7 @@ export function HeroSection() {
         <div className="absolute right-0 top-16 h-80 w-80 rounded-full bg-secondary/10 blur-3xl" />
         <div className="absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-accent/8 blur-3xl" />
 
-        <div className="relative grid gap-16 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-center">
+        <div className="relative grid gap-10 dark:gap-16 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-center">
           <div className="w-full max-w-[620px]">
             <Reveal>
               <div className="inline-flex items-center gap-3 rounded-full border border-primary/20 bg-[var(--color-card)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.34em] text-primary shadow-[0_10px_28px_rgba(91,92,255,0.08)]">
@@ -54,22 +54,22 @@ export function HeroSection() {
             </Reveal>
 
             <Reveal delay={0.05}>
-              <p className="mt-10 text-xs font-semibold uppercase tracking-[0.42em] text-secondary">
+              <p className="mt-8 text-xs font-semibold uppercase tracking-[0.42em] text-secondary dark:mt-10">
                 Hi, I&apos;m
               </p>
-              <h1 className="mt-5 max-w-[12ch] text-balance font-display text-[clamp(3.75rem,8vw,5rem)] font-black leading-[0.92] tracking-[-0.08em] text-text-primary sm:text-[4.5rem] lg:text-[5rem]">
+              <h1 className="mt-4 max-w-[12ch] text-balance font-display text-[clamp(3.75rem,8vw,5rem)] font-black leading-[0.92] tracking-[-0.08em] text-text-primary dark:mt-5 sm:text-[4.5rem] lg:text-[5rem]">
                 <span className="hero-name-gradient block">{site.name}</span>
               </h1>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <p className="mt-7 max-w-[580px] text-lg leading-8 text-text-secondary sm:text-xl">
+              <p className="mt-5 max-w-[580px] text-lg leading-8 text-text-secondary dark:mt-7 sm:text-xl">
                 AI Engineer specializing in Generative AI, Python, React, RAG, and Full Stack Development.
               </p>
             </Reveal>
 
             <Reveal delay={0.14}>
-              <div className="mt-10 flex flex-wrap gap-4">
+              <div className="mt-8 flex flex-wrap gap-4 dark:mt-10">
                 <Button href="#projects" variant="primary">
                   View My Work
                   <Play className="h-4 w-4 fill-current" />
@@ -81,7 +81,7 @@ export function HeroSection() {
             </Reveal>
 
             <Reveal delay={0.18}>
-              <div className="mt-9 flex flex-wrap gap-3">
+              <div className="mt-6 flex flex-wrap gap-3 dark:mt-9">
                 {socialLinks.slice(0, 4).map((link, index) => {
                   const Icon = iconMap[link.icon];
                   return (
@@ -108,7 +108,7 @@ export function HeroSection() {
             <Reveal delay={0.22}>
               <motion.a
                 href="#about"
-                className="mt-12 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.34em] text-text-secondary transition-colors duration-300 hover:text-text-primary"
+                className="mt-8 inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.34em] text-text-secondary transition-colors duration-300 hover:text-text-primary dark:mt-12"
                 animate={prefersReducedMotion ? undefined : { y: [0, 3, 0] }}
                 transition={{ duration: 2.4, repeat: Number.POSITIVE_INFINITY, ease: 'easeInOut' }}
               >

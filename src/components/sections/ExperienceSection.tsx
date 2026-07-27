@@ -19,7 +19,7 @@ export function ExperienceSection() {
           />
         </Reveal>
 
-        <div className="mt-10 grid gap-6">
+        <div className="mt-8 grid gap-5">
           {experience.map((item, index) => (
             <Reveal key={`${item.org}-${item.role}`} delay={index * 0.05}>
               <motion.article
