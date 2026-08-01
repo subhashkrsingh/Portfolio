@@ -138,35 +138,21 @@ export function HeroSection() {
                 animate={prefersReducedMotion ? undefined : { rotate: 360 }}
                 transition={{ duration: 42, repeat: Number.POSITIVE_INFINITY, ease: 'linear' }}
               />
-              <motion.div
+              {/* <motion.div
                 className="hero-orbit absolute h-[360px] w-[360px] rounded-full border-dashed border-white/10"
                 animate={prefersReducedMotion ? undefined : { rotate: -360 }}
                 transition={{ duration: 30, repeat: Number.POSITIVE_INFINITY, ease: 'linear' }}
-              />
+              /> */}
 
               <div className="absolute inset-0 hero-starfield opacity-15" />
 
-              <motion.div
-                className="relative z-10 flex h-[260px] w-[260px] items-center justify-center rounded-full border border-border bg-[var(--color-surface)] p-4 shadow-[0_24px_70px_rgba(2,6,23,0.16)]"
-                animate={prefersReducedMotion ? undefined : { y: [0, -8, 0] }}
-                transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: 'easeInOut' }}
-              >
-                <div className="flex h-full w-full items-center justify-center rounded-full border border-border bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),var(--color-surface)_62%)] p-4">
-                  <div className="flex h-[180px] w-[180px] items-center justify-center rounded-full border border-border bg-[linear-gradient(145deg,rgba(139,92,246,0.18),rgba(59,130,246,0.16),rgba(34,211,238,0.14))] text-center">
-                    <div>
-                      <p className="text-xs font-medium uppercase tracking-[0.34em] text-text-secondary">
-                        AI Engineer
-                      </p>
-                      <p className="mt-3 font-display text-4xl font-black tracking-[-0.08em] text-text-primary">
-                        SK
-                      </p>
-                      <p className="mt-2 text-xs uppercase tracking-[0.3em] text-text-secondary">
-                        Subhash Kumar Singh
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+              <div className="flex h-[450px] w-[450px] items-center justify-center overflow-hidden rounded-full border border-border bg-[linear-gradient(145deg,rgba(139,92,246,0.18),rgba(59,130,246,0.16),rgba(34,211,238,0.14))] text-center">
+                <img
+                  src="/ProfilePic.png"
+                  alt="Profile photo of Subhash Kumar Singh" 
+                  className="block h-[430px] w-[430px] rounded-full object-cover object-center"
+                />
+              </div>
 
               <div className="hidden md:block">
                 {floatingCards.map((card) => {
