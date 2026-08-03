@@ -35,7 +35,7 @@ export function HeroSection() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section id="home" className="section-shell section-padding scroll-mt-32">
+    <section id="home" className="section-shell section-padding scroll-mt-22">
       <div className="section-content hero-stage relative overflow-hidden rounded-[40px] border border-border bg-[var(--color-surface)] px-6 py-8 shadow-card dark:py-10 sm:px-8 md:px-10 md:py-12 dark:md:py-14 lg:px-12 lg:py-14 dark:lg:py-16">
         <div className="absolute inset-0 hero-starfield opacity-20" />
         <div className="absolute inset-0 surface-line opacity-20" />
