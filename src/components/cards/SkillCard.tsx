@@ -1,4 +1,5 @@
 import { Badge } from '@/components/ui/Badge';
+import { TechBadge } from '@/components/ui/TechBadge';
 import { cn } from '@/utils/cn';
 import { motion, useReducedMotion } from 'framer-motion';
 import { BrainCircuit, Code2, Database, MonitorSmartphone, ServerCog, Sparkles, Wrench } from 'lucide-react';
@@ -51,12 +52,13 @@ export function SkillCard({ skill, className }: SkillCardProps) {
 
       <div className="mt-5 flex flex-wrap gap-2">
         {skill.items.map((item) => (
-          <span
+          <TechBadge
             key={item}
-            className="rounded-full border border-border bg-[var(--color-card)] px-3 py-1 text-xs font-medium text-text-secondary transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-primary/30 group-hover:bg-primary/10 group-hover:text-text-primary"
-          >
-            {item}
-          </span>
+            name={item}
+            label={item}
+            iconSize={13}
+            className="px-2.5 py-1 text-[11px] group-hover:-translate-y-0.5"
+          />
         ))}
       </div>
     </motion.article>

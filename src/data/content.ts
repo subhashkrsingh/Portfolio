@@ -186,7 +186,7 @@ export const heroMetrics: HeroMetric[] = [
   },
 ];
 
-export const heroTech = ['Python', 'React', 'OpenAI', 'GitHub', 'Node.js', 'PostgreSQL'];
+export const heroTech = ['React', 'TypeScript', 'JavaScript', 'Node.js', 'Python', 'Tailwind CSS', 'PostgreSQL', 'Git', 'GitHub'];
 
 export const aboutTimeline = [
   {

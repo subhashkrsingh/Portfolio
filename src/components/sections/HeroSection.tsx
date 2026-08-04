@@ -1,20 +1,11 @@
 import { Button } from '@/components/ui/Button';
 import { Reveal } from '@/components/ui/Reveal';
+import { TechIcon } from '@/components/ui/TechIcon';
 import { site, socialLinks } from '@/data/content';
+import { heroTechNames } from '@/data/tech-icons';
 import { cn } from '@/utils/cn';
 import { motion, useReducedMotion } from 'framer-motion';
-import {
-  Atom,
-  Braces,
-  ChevronDown,
-  Github,
-  Linkedin,
-  Mail,
-  Play,
-  ServerCog,
-  Wind,
-  X,
-} from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, Play, X } from 'lucide-react';
 
 const iconMap = {
   github: Github,
@@ -24,12 +15,11 @@ const iconMap = {
   resume: Mail,
 } as const;
 
-const floatingCards = [
-  { title: 'React', subtitle: 'UI systems', icon: Atom, position: 'top-10 left-6', delay: 0 },
-  { title: 'TypeScript', subtitle: 'Strict types', icon: Braces, position: 'top-4 right-8', delay: 0.12 },
-  { title: 'Tailwind', subtitle: 'Design tokens', icon: Wind, position: 'bottom-12 left-0', delay: 0.24 },
-  { title: 'Node.js', subtitle: 'Backend logic', icon: ServerCog, position: 'bottom-4 right-4', delay: 0.34 },
-];
+const orbitingTech = heroTechNames.map((name, index) => ({
+  name,
+  angle: -90 + index * 40,
+  delay: index * 0.08,
+}));
 
 export function HeroSection() {
   const prefersReducedMotion = useReducedMotion();
@@ -84,6 +74,7 @@ export function HeroSection() {
               <div className="mt-6 flex flex-wrap gap-3 dark:mt-9">
                 {socialLinks.slice(0, 4).map((link, index) => {
                   const Icon = iconMap[link.icon];
+
                   return (
                     <motion.a
                       key={link.label}
@@ -122,68 +113,75 @@ export function HeroSection() {
 
           <Reveal delay={0.08} className="relative">
             <motion.div
-              className="relative mx-auto flex min-h-[560px] w-full max-w-[640px] items-center justify-center"
+              className="relative mx-auto flex min-h-[460px] w-full max-w-[640px] items-center justify-center sm:min-h-[520px] lg:min-h-[560px]"
               initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
             >
               <motion.div
-                className="absolute h-[440px] w-[440px] rounded-full hero-glow blur-3xl"
+                className="absolute h-[360px] w-[360px] rounded-full hero-glow blur-3xl sm:h-[420px] sm:w-[420px] lg:h-[460px] lg:w-[460px]"
                 animate={prefersReducedMotion ? undefined : { scale: [1, 1.04, 1], opacity: [0.55, 0.85, 0.55] }}
                 transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: 'easeInOut' }}
               />
 
               <motion.div
-                className="hero-orbit absolute h-[500px] w-[500px] rounded-full"
+                className="hero-orbit absolute h-[360px] w-[360px] rounded-full sm:h-[440px] sm:w-[440px] lg:h-[500px] lg:w-[500px]"
                 animate={prefersReducedMotion ? undefined : { rotate: 360 }}
                 transition={{ duration: 42, repeat: Number.POSITIVE_INFINITY, ease: 'linear' }}
               />
-              {/* <motion.div
-                className="hero-orbit absolute h-[360px] w-[360px] rounded-full border-dashed border-white/10"
-                animate={prefersReducedMotion ? undefined : { rotate: -360 }}
-                transition={{ duration: 30, repeat: Number.POSITIVE_INFINITY, ease: 'linear' }}
-              /> */}
 
               <div className="absolute inset-0 hero-starfield opacity-15" />
 
-              <div className="flex h-[450px] w-[450px] items-center justify-center overflow-hidden rounded-full border border-border bg-[linear-gradient(145deg,rgba(139,92,246,0.18),rgba(59,130,246,0.16),rgba(34,211,238,0.14))] text-center">
+              <div className="relative z-10 flex h-[320px] w-[320px] items-center justify-center overflow-hidden rounded-full border border-border bg-[linear-gradient(145deg,rgba(139,92,246,0.18),rgba(59,130,246,0.16),rgba(34,211,238,0.14))] text-center sm:h-[390px] sm:w-[390px] lg:h-[430px] lg:w-[430px]">
                 <img
                   src="/ProfilePic.png"
-                  alt="Profile photo of Subhash Kumar Singh" 
-                  className="block h-[430px] w-[430px] rounded-full object-cover object-center"
+                  alt="Profile photo of Subhash Kumar Singh"
+                  className="block h-[300px] w-[300px] rounded-full object-cover object-center sm:h-[370px] sm:w-[370px] lg:h-[410px] lg:w-[410px]"
                 />
               </div>
 
-              <div className="hidden md:block">
-                {floatingCards.map((card) => {
-                  const Icon = card.icon;
-                  return (
-                    <motion.div
-                      key={card.title}
-                      className={cn(
-                        'absolute w-[160px] rounded-[24px] border border-border bg-[var(--color-card)] p-4 shadow-[0_18px_40px_rgba(2,6,23,0.16)] backdrop-blur-xl',
-                        card.position,
-                      )}
-                      animate={prefersReducedMotion ? undefined : { y: [0, -8, 0], rotate: [0, 1, 0] }}
-                      transition={{
-                        duration: 6 + card.delay * 10,
-                        repeat: Number.POSITIVE_INFINITY,
-                        ease: 'easeInOut',
-                        delay: card.delay,
-                      }}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-border bg-gradient-to-br from-primary/15 via-secondary/15 to-accent/15 text-text-primary">
-                          <Icon className="h-4 w-4" />
-                        </div>
-                        <div>
-                          <p className="text-sm font-semibold text-text-primary">{card.title}</p>
-                          <p className="mt-1 text-xs text-text-secondary">{card.subtitle}</p>
-                        </div>
+              <div
+                className={cn(
+                  'absolute inset-0 z-20',
+                  '[--orbit-radius:132px] sm:[--orbit-radius:172px] md:[--orbit-radius:214px] lg:[--orbit-radius:246px]',
+                )}
+              >
+                <motion.div
+                  className="absolute inset-0"
+                  animate={prefersReducedMotion ? undefined : { rotate: 360 }}
+                  transition={{ duration: 42, repeat: Number.POSITIVE_INFINITY, ease: 'linear' }}
+                >
+                  {orbitingTech.map((item) => {
+                    const positionStyle = {
+                      transform: `translate(-50%, -50%) rotate(${item.angle}deg) translateY(calc(-1 * var(--orbit-radius))) rotate(${-item.angle}deg)`,
+                    } as const;
+
+                    return (
+                      <div
+                        key={item.name}
+                        className="absolute left-1/2 top-1/2"
+                        style={positionStyle}
+                      >
+                        <motion.div
+                          title={item.name}
+                          aria-label={item.name}
+                          className="group flex"
+                          animate={prefersReducedMotion ? undefined : { y: [0, -6, 0], scale: [1, 1.05, 1] }}
+                          transition={{
+                            duration: 5.8 + item.delay * 2,
+                            repeat: Number.POSITIVE_INFINITY,
+                            ease: 'easeInOut',
+                            delay: item.delay,
+                          }}
+                        >
+                          <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-border bg-[var(--color-card)]/90 shadow-[0_12px_28px_rgba(2,6,23,0.18)] backdrop-blur-xl sm:h-12 sm:w-12 md:h-14 md:w-14">
+                            <TechIcon name={item.name} size={24} ariaHidden />
+                          </div>
+                        </motion.div>
                       </div>
-                    </motion.div>
-                  );
-                })}
+                    );
+                  })}
+                </motion.div>
               </div>
             </motion.div>
           </Reveal>

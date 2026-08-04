@@ -1,4 +1,5 @@
 import { Badge } from '@/components/ui/Badge';
+import { TechBadge } from '@/components/ui/TechBadge';
 import { cn } from '@/utils/cn';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
@@ -232,12 +233,13 @@ export function ProjectCard({ project, onOpen, className }: ProjectCardProps) {
         <p className="mt-4 text-sm leading-7 text-text-secondary">{project.summary}</p>
         <div className="mt-5 flex flex-wrap gap-2">
           {project.stack.slice(0, 4).map((item) => (
-            <span
+            <TechBadge
               key={item}
-              className="rounded-full border border-border bg-[var(--color-card)] px-3 py-1 text-xs font-medium text-text-secondary transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-primary/30 group-hover:bg-primary/10 group-hover:text-text-primary"
-            >
-              {item}
-            </span>
+              name={item}
+              label={item}
+              iconSize={13}
+              className="px-2.5 py-1 text-[11px] group-hover:-translate-y-0.5"
+            />
           ))}
         </div>
       </button>

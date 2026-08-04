@@ -1,29 +1,9 @@
 import { Button } from '@/components/ui/Button';
 import { Reveal } from '@/components/ui/Reveal';
+import { TechIcon } from '@/components/ui/TechIcon';
 import { aboutTimeline, skillTiles, site } from '@/data/content';
 import { motion, useReducedMotion } from 'framer-motion';
-import {
-  Code2,
-  GitBranch,
-  Braces,
-  Bot,
-  Database,
-  MonitorSmartphone,
-  Server,
-  Sparkles,
-  ArrowRight,
-} from 'lucide-react';
-
-const iconMap = {
-  react: MonitorSmartphone,
-  typescript: Braces,
-  javascript: Code2,
-  node: Server,
-  python: Bot,
-  tailwind: Sparkles,
-  postgres: Database,
-  git: GitBranch,
-} as const;
+import { ArrowRight } from 'lucide-react';
 
 export function AboutSkillsSection() {
   const prefersReducedMotion = useReducedMotion();
@@ -92,24 +72,21 @@ export function AboutSkillsSection() {
 
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {skillTiles.map((tile) => {
-                const Icon = iconMap[tile.iconKey];
+                const iconSize = tile.title === 'Git & GitHub' ? 20 : 40;
 
                 return (
                   <motion.div
                     key={tile.title}
-                    className="group rounded-[22px] border border-border bg-[var(--color-card)] px-4 py-4 transition-all duration-300 hover:shadow-[0_0_0_1px_rgba(139,92,246,0.12),0_0_40px_rgba(139,92,246,0.16)]"
+                    className="group flex h-full flex-col items-center rounded-[22px] border border-border bg-[var(--color-card)] px-4 py-5 text-center transition-all duration-300 hover:shadow-[0_0_0_1px_rgba(139,92,246,0.12),0_0_40px_rgba(139,92,246,0.16)]"
                     whileHover={prefersReducedMotion ? undefined : { y: -4, scale: 1.01 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <div className="flex items-start gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-border bg-gradient-to-br from-primary/15 via-secondary/15 to-accent/15 text-text-primary transition-transform duration-300 group-hover:scale-110">
-                        <Icon className="h-4 w-4" />
-                      </div>
-                      <div>
-                        <p className="font-medium text-text-primary">{tile.title}</p>
-                        <p className="mt-1 text-xs leading-6 text-text-secondary">{tile.description}</p>
-                      </div>
+                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-border bg-[var(--color-card-soft)] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+                      <TechIcon name={tile.title} size={iconSize} ariaHidden />
                     </div>
+
+                    <p className="mt-4 font-medium text-text-primary">{tile.title}</p>
+                    <p className="mt-2 text-xs leading-6 text-text-secondary">{tile.description}</p>
                   </motion.div>
                 );
               })}

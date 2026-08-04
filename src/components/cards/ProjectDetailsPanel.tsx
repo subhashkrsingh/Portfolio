@@ -1,5 +1,6 @@
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
+import { TechBadge } from '@/components/ui/TechBadge';
 import type { ProjectItem } from '@/types/content';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
@@ -31,9 +32,7 @@ export function ProjectDetailsPanel({ project }: ProjectDetailsPanelProps) {
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {project.stack.map((item) => (
-              <Badge key={item} variant="outline">
-                {item}
-              </Badge>
+              <TechBadge key={item} name={item} label={item} iconSize={13} className="px-2.5 py-1.5" />
             ))}
           </div>
         </div>

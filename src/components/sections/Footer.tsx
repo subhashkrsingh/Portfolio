@@ -1,4 +1,6 @@
-import { socialLinks, site } from '@/data/content';
+import { TechIcon } from '@/components/ui/TechIcon';
+import { site, socialLinks } from '@/data/content';
+import { footerTechNames } from '@/data/tech-icons';
 import { Github, Linkedin, Mail, X } from 'lucide-react';
 
 const iconMap = {
@@ -22,8 +24,19 @@ export function Footer() {
               {site.name}
             </p>
             <p className="mt-3 max-w-xl text-sm leading-7 text-text-secondary">
-              Built with React + TypeScript. Designed to feel like a product, not a template.
+              Built with React + TypeScript.
             </p>
+
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              {footerTechNames.map((name) => (
+                <span
+                  key={name}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-[var(--color-card)] text-text-primary transition-transform duration-300 hover:scale-110 hover:border-primary/30 hover:bg-[var(--color-surface)]"
+                >
+                  <TechIcon name={name} size={20} ariaHidden />
+                </span>
+              ))}
+            </div>
           </div>
 
           <div className="flex flex-wrap gap-3">
@@ -48,7 +61,7 @@ export function Footer() {
 
         <div className="mt-4 flex flex-col gap-2 border-t border-border pt-4 text-xs text-text-secondary sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} {site.name}. Built using React + TypeScript.
+            &copy; {year} {site.name}. Built using React + TypeScript.
           </p>
           <p>{site.role}</p>
         </div>
