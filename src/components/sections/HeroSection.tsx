@@ -5,6 +5,7 @@ import { site, socialLinks } from '@/data/content';
 import { heroTechNames } from '@/data/tech-icons';
 import { cn } from '@/utils/cn';
 import { motion, useReducedMotion } from 'framer-motion';
+import { useState } from 'react';
 import { ChevronDown, Github, Linkedin, Mail, Play, X } from 'lucide-react';
 
 const iconMap = {
@@ -23,6 +24,7 @@ const orbitingTech = heroTechNames.map((name, index) => ({
 
 export function HeroSection() {
   const prefersReducedMotion = useReducedMotion();
+  const [orbitPaused, setOrbitPaused] = useState(false);
 
   return (
     <section id="home" className="section-shell section-padding scroll-mt-22">
@@ -142,46 +144,46 @@ export function HeroSection() {
 
               <div
                 className={cn(
-                  'absolute inset-0 z-20',
-                  '[--orbit-radius:132px] sm:[--orbit-radius:172px] md:[--orbit-radius:214px] lg:[--orbit-radius:246px]',
+                  'absolute inset-0 z-20 hero-tech-orbit pointer-events-none',
+                  '[--orbit-radius:180px] sm:[--orbit-radius:220px] lg:[--orbit-radius:250px]',
                 )}
+                style={{ animationPlayState: orbitPaused ? 'paused' : 'running' }}
               >
-                <motion.div
-                  className="absolute inset-0"
-                  animate={prefersReducedMotion ? undefined : { rotate: 360 }}
-                  transition={{ duration: 42, repeat: Number.POSITIVE_INFINITY, ease: 'linear' }}
-                >
-                  {orbitingTech.map((item) => {
-                    const positionStyle = {
-                      transform: `translate(-50%, -50%) rotate(${item.angle}deg) translateY(calc(-1 * var(--orbit-radius))) rotate(${-item.angle}deg)`,
-                    } as const;
+                {orbitingTech.map((item) => {
+                  const positionStyle = {
+                    transform: `translate(-50%, -50%) rotate(${item.angle}deg) translateX(var(--orbit-radius)) rotate(${-item.angle}deg)`,
+                  } as const;
 
                     return (
                       <div
                         key={item.name}
-                        className="absolute left-1/2 top-1/2"
+                        className="absolute left-1/2 top-1/2 pointer-events-auto"
                         style={positionStyle}
                       >
-                        <motion.div
+                        <div
+                          onMouseEnter={() => setOrbitPaused(true)}
+                          onMouseLeave={() => setOrbitPaused(false)}
+                          onFocus={() => setOrbitPaused(true)}
+                          onBlur={() => setOrbitPaused(false)}
                           title={item.name}
                           aria-label={item.name}
-                          className="group flex"
-                          animate={prefersReducedMotion ? undefined : { y: [0, -6, 0], scale: [1, 1.05, 1] }}
-                          transition={{
-                            duration: 5.8 + item.delay * 2,
-                            repeat: Number.POSITIVE_INFINITY,
-                            ease: 'easeInOut',
-                            delay: item.delay,
-                          }}
+                          role="img"
+                          tabIndex={0}
+                          className="group hero-tech-badge relative flex h-9 w-9 items-center justify-center rounded-2xl border border-border bg-[var(--color-card)]/90 shadow-[0_12px_28px_rgba(2,6,23,0.18)] backdrop-blur-xl transition-transform duration-300 hover:scale-110 hover:shadow-[0_16px_36px_rgba(2,6,23,0.24)] sm:h-10 sm:w-10 lg:h-12 lg:w-12"
                         >
-                          <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-border bg-[var(--color-card)]/90 shadow-[0_12px_28px_rgba(2,6,23,0.18)] backdrop-blur-xl sm:h-12 sm:w-12 md:h-14 md:w-14">
-                            <TechIcon name={item.name} size={24} ariaHidden />
-                          </div>
-                        </motion.div>
+                        <div
+                          className="hero-tech-badge-inner relative flex items-center justify-center"
+                          style={{ animationPlayState: orbitPaused ? 'paused' : 'running' }}
+                        >
+                          <span className="hero-tech-tooltip pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 rounded-md bg-slate-900 px-2 py-1 text-[11px] font-medium tracking-normal text-white opacity-0 shadow-[0_8px_20px_rgba(2,6,23,0.2)] transition-all duration-200 group-hover:opacity-100 group-hover:-translate-y-0.5">
+                            {item.name}
+                          </span>
+                          <TechIcon name={item.name} size={26} ariaHidden title="" />
+                        </div>
                       </div>
-                    );
-                  })}
-                </motion.div>
+                    </div>
+                  );
+                })}
               </div>
             </motion.div>
           </Reveal>
