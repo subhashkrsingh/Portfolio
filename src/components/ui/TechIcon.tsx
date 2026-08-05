@@ -7,26 +7,24 @@ type TechIconProps = {
   name: string;
   size?: number;
   className?: string;
-  title?: string;
   ariaLabel?: string;
   ariaHidden?: boolean;
 };
 
-export function TechIcon({ name, size = 24, className, title, ariaLabel, ariaHidden = false }: TechIconProps) {
+export function TechIcon({ name, size = 24, className, ariaLabel, ariaHidden = false }: TechIconProps) {
   const tech = getTechIconDefinition(name);
 
   if (!tech) {
     return null;
   }
 
-  const label = title ?? tech.label;
+  const label = ariaLabel ?? tech.label;
   const wrapperStyle: TechIconStyle = {
     '--tech-shadow-blur': '8px',
   };
 
   return (
     <span
-      title={label}
       aria-label={ariaHidden ? undefined : ariaLabel ?? label}
       aria-hidden={ariaHidden || undefined}
       role={ariaHidden ? undefined : 'img'}

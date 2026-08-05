@@ -15,7 +15,7 @@ export function TechBadge({ name, label, className, iconSize = 14 }: TechBadgePr
 
   return (
     <span
-      title={resolvedLabel}
+      aria-label={resolvedLabel}
       className={cn(
         'inline-flex items-center gap-1.5 rounded-full border border-border bg-[var(--color-card)] px-3 py-1.5 text-xs font-medium text-text-secondary transition-all duration-300 hover:border-primary/30 hover:bg-primary/10 hover:text-text-primary',
         className,

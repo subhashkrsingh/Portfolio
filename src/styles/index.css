@@ -175,11 +175,6 @@ a {
   will-change: transform;
 }
 
-.hero-tech-orbit:hover,
-.hero-tech-orbit:hover .hero-tech-badge-inner {
-  animation-play-state: paused;
-}
-
 .hero-tech-badge:hover .hero-tech-tooltip {
   opacity: 1;
   transform: translate(-50%, -2px);
@@ -356,7 +351,7 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .hero-tech-orbit,
   .hero-tech-badge-inner {
-    animation: none;
+    animation-duration: 60s;
   }
 }
 

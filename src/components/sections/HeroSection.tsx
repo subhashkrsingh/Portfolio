@@ -128,7 +128,7 @@ export function HeroSection() {
 
               <motion.div
                 className="hero-orbit absolute h-[360px] w-[360px] rounded-full sm:h-[440px] sm:w-[440px] lg:h-[500px] lg:w-[500px]"
-                animate={prefersReducedMotion ? undefined : { rotate: 360 }}
+                animate={{ rotate: 360 }}
                 transition={{ duration: 42, repeat: Number.POSITIVE_INFINITY, ease: 'linear' }}
               />
 
@@ -165,23 +165,22 @@ export function HeroSection() {
                           onMouseLeave={() => setOrbitPaused(false)}
                           onFocus={() => setOrbitPaused(true)}
                           onBlur={() => setOrbitPaused(false)}
-                          title={item.name}
                           aria-label={item.name}
                           role="img"
                           tabIndex={0}
                           className="group hero-tech-badge relative flex h-9 w-9 items-center justify-center rounded-2xl border border-border bg-[var(--color-card)]/90 shadow-[0_12px_28px_rgba(2,6,23,0.18)] backdrop-blur-xl transition-transform duration-300 hover:scale-110 hover:shadow-[0_16px_36px_rgba(2,6,23,0.24)] sm:h-10 sm:w-10 lg:h-12 lg:w-12"
                         >
-                        <div
-                          className="hero-tech-badge-inner relative flex items-center justify-center"
-                          style={{ animationPlayState: orbitPaused ? 'paused' : 'running' }}
-                        >
-                          <span className="hero-tech-tooltip pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 rounded-md bg-slate-900 px-2 py-1 text-[11px] font-medium tracking-normal text-white opacity-0 shadow-[0_8px_20px_rgba(2,6,23,0.2)] transition-all duration-200 group-hover:opacity-100 group-hover:-translate-y-0.5">
-                            {item.name}
-                          </span>
-                          <TechIcon name={item.name} size={26} ariaHidden title="" />
+                          <div
+                            className="hero-tech-badge-inner relative flex items-center justify-center"
+                            style={{ animationPlayState: orbitPaused ? 'paused' : 'running' }}
+                          >
+                            <span className="hero-tech-tooltip pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 rounded-md bg-slate-900 px-2 py-1 text-[11px] font-medium tracking-normal text-white opacity-0 shadow-[0_8px_20px_rgba(2,6,23,0.2)] transition-all duration-200 group-hover:opacity-100 group-hover:-translate-y-0.5">
+                              {item.name}
+                            </span>
+                            <TechIcon name={item.name} size={26} ariaHidden />
+                          </div>
                         </div>
                       </div>
-                    </div>
                   );
                 })}
               </div>
