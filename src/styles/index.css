@@ -175,11 +175,6 @@ a {
   will-change: transform;
 }
 
-.hero-tech-badge:hover .hero-tech-tooltip {
-  opacity: 1;
-  transform: translate(-50%, -2px);
-}
-
 .text-gradient {
   background: linear-gradient(135deg, #b66dff 0%, #8a7cff 42%, #4fc3ff 78%, #22d3ee 100%);
   background-size: 200% 200%;

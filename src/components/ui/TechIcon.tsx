@@ -29,7 +29,7 @@ export function TechIcon({ name, size = 24, className, ariaLabel, ariaHidden = f
       aria-hidden={ariaHidden || undefined}
       role={ariaHidden ? undefined : 'img'}
       className={cn(
-        'inline-flex shrink-0 items-center justify-center align-middle transition-transform duration-300 ease-out group-hover:scale-110 group-hover:[--tech-shadow-blur:12px]',
+        'inline-flex shrink-0 items-center justify-center align-middle transition-transform duration-300 ease-out group-hover:scale-110 group-hover:[--tech-shadow-blur:12px] group-focus-visible:scale-110 group-focus-visible:[--tech-shadow-blur:12px]',
         tech.glyphs.length > 1 ? 'gap-1' : '',
         className,
       )}

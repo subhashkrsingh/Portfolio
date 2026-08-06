@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/Button';
 import { Reveal } from '@/components/ui/Reveal';
 import { TechIcon } from '@/components/ui/TechIcon';
 import { site, socialLinks } from '@/data/content';
+import { techLinks } from '@/data/tech-links';
 import { heroTechNames } from '@/data/tech-icons';
 import { cn } from '@/utils/cn';
 import { motion, useReducedMotion } from 'framer-motion';
@@ -18,8 +19,8 @@ const iconMap = {
 
 const orbitingTech = heroTechNames.map((name, index) => ({
   name,
+  href: techLinks[name],
   angle: -90 + index * 40,
-  delay: index * 0.08,
 }));
 
 export function HeroSection() {
@@ -154,33 +155,27 @@ export function HeroSection() {
                     transform: `translate(-50%, -50%) rotate(${item.angle}deg) translateX(var(--orbit-radius)) rotate(${-item.angle}deg)`,
                   } as const;
 
-                    return (
+                  return (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      aria-label={item.name}
+                      onMouseEnter={() => setOrbitPaused(true)}
+                      onMouseLeave={() => setOrbitPaused(false)}
+                      onFocus={() => setOrbitPaused(true)}
+                      onBlur={() => setOrbitPaused(false)}
+                      className="group hero-tech-badge absolute left-1/2 top-1/2 pointer-events-auto inline-flex h-9 w-9 items-center justify-center rounded-2xl border border-border bg-[var(--color-card)]/90 shadow-[0_12px_28px_rgba(2,6,23,0.18)] backdrop-blur-xl transition-transform duration-300 hover:scale-110 hover:shadow-[0_16px_36px_rgba(2,6,23,0.24)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-surface)] sm:h-10 sm:w-10 lg:h-12 lg:w-12"
+                      style={positionStyle}
+                    >
                       <div
-                        key={item.name}
-                        className="absolute left-1/2 top-1/2 pointer-events-auto"
-                        style={positionStyle}
+                        className="hero-tech-badge-inner relative flex items-center justify-center"
+                        style={{ animationPlayState: orbitPaused ? 'paused' : 'running' }}
                       >
-                        <div
-                          onMouseEnter={() => setOrbitPaused(true)}
-                          onMouseLeave={() => setOrbitPaused(false)}
-                          onFocus={() => setOrbitPaused(true)}
-                          onBlur={() => setOrbitPaused(false)}
-                          aria-label={item.name}
-                          role="img"
-                          tabIndex={0}
-                          className="group hero-tech-badge relative flex h-9 w-9 items-center justify-center rounded-2xl border border-border bg-[var(--color-card)]/90 shadow-[0_12px_28px_rgba(2,6,23,0.18)] backdrop-blur-xl transition-transform duration-300 hover:scale-110 hover:shadow-[0_16px_36px_rgba(2,6,23,0.24)] sm:h-10 sm:w-10 lg:h-12 lg:w-12"
-                        >
-                          <div
-                            className="hero-tech-badge-inner relative flex items-center justify-center"
-                            style={{ animationPlayState: orbitPaused ? 'paused' : 'running' }}
-                          >
-                            <span className="hero-tech-tooltip pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 rounded-md bg-slate-900 px-2 py-1 text-[11px] font-medium tracking-normal text-white opacity-0 shadow-[0_8px_20px_rgba(2,6,23,0.2)] transition-all duration-200 group-hover:opacity-100 group-hover:-translate-y-0.5">
-                              {item.name}
-                            </span>
-                            <TechIcon name={item.name} size={26} ariaHidden />
-                          </div>
-                        </div>
+                        <TechIcon name={item.name} size={26} ariaHidden />
                       </div>
+                    </a>
                   );
                 })}
               </div>
