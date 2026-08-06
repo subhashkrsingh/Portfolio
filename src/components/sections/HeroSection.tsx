@@ -2,8 +2,7 @@ import { Button } from '@/components/ui/Button';
 import { Reveal } from '@/components/ui/Reveal';
 import { TechIcon } from '@/components/ui/TechIcon';
 import { site, socialLinks } from '@/data/content';
-import { techLinks } from '@/data/tech-links';
-import { heroTechNames } from '@/data/tech-icons';
+import { getTechUrl, heroTechNames } from '@/data/tech-icons';
 import { cn } from '@/utils/cn';
 import { motion, useReducedMotion } from 'framer-motion';
 import { useState } from 'react';
@@ -19,7 +18,7 @@ const iconMap = {
 
 const orbitingTech = heroTechNames.map((name, index) => ({
   name,
-  href: techLinks[name],
+  href: getTechUrl(name) ?? '#',
   angle: -90 + index * 40,
 }));
 

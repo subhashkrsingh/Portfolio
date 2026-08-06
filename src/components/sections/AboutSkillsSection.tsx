@@ -1,7 +1,8 @@
 import { Button } from '@/components/ui/Button';
+import { SkillCard } from '@/components/cards/SkillCard';
 import { Reveal } from '@/components/ui/Reveal';
-import { TechIcon } from '@/components/ui/TechIcon';
-import { aboutTimeline, skillTiles, site } from '@/data/content';
+import { aboutTimeline, site } from '@/data/content';
+import { techSkillGroups } from '@/data/tech-icons';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
@@ -54,7 +55,8 @@ export function AboutSkillsSection() {
 
         <Reveal>
           <motion.article
-            className="glass-card h-full p-6 md:p-8"
+            id="skills"
+            className="glass-card h-full scroll-mt-32 p-6 md:p-8"
             whileHover={prefersReducedMotion ? undefined : { y: -4 }}
             transition={{ duration: 0.2 }}
           >
@@ -70,26 +72,10 @@ export function AboutSkillsSection() {
               </Button>
             </div>
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {skillTiles.map((tile) => {
-                const iconSize = tile.title === 'Git & GitHub' ? 20 : 40;
-
-                return (
-                  <motion.div
-                    key={tile.title}
-                    className="group flex h-full flex-col items-center rounded-[22px] border border-border bg-[var(--color-card)] px-4 py-5 text-center transition-all duration-300 hover:shadow-[0_0_0_1px_rgba(139,92,246,0.12),0_0_40px_rgba(139,92,246,0.16)]"
-                    whileHover={prefersReducedMotion ? undefined : { y: -4, scale: 1.01 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-border bg-[var(--color-card-soft)] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
-                      <TechIcon name={tile.title} size={iconSize} ariaHidden />
-                    </div>
-
-                    <p className="mt-4 font-medium text-text-primary">{tile.title}</p>
-                    <p className="mt-2 text-xs leading-6 text-text-secondary">{tile.description}</p>
-                  </motion.div>
-                );
-              })}
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              {techSkillGroups.map((skill) => (
+                <SkillCard key={skill.category} skill={skill} className="h-full" />
+              ))}
             </div>
 
             <div className="mt-4 grid gap-3 sm:grid-cols-3">

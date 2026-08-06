@@ -1,5 +1,7 @@
 import { Badge } from '@/components/ui/Badge';
 import { TechBadge } from '@/components/ui/TechBadge';
+import { TechIcon } from '@/components/ui/TechIcon';
+import { getTechIconDefinition } from '@/data/tech-icons';
 import { cn } from '@/utils/cn';
 import { motion, useReducedMotion } from 'framer-motion';
 import { BrainCircuit, Code2, Database, MonitorSmartphone, ServerCog, Sparkles, Wrench } from 'lucide-react';
@@ -23,6 +25,7 @@ const iconMap = {
 export function SkillCard({ skill, className }: SkillCardProps) {
   const prefersReducedMotion = useReducedMotion();
   const Icon = iconMap[skill.iconKey as keyof typeof iconMap] ?? Code2;
+  const leadingTech = getTechIconDefinition(skill.iconKey);
 
   return (
     <motion.article
@@ -38,7 +41,7 @@ export function SkillCard({ skill, className }: SkillCardProps) {
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-border bg-[var(--color-card)] text-text-primary transition-transform duration-300 group-hover:scale-110 group-hover:border-primary/30">
-            <Icon className="h-5 w-5" />
+            {leadingTech ? <TechIcon name={skill.iconKey} size={28} ariaHidden /> : <Icon className="h-5 w-5" />}
           </div>
           <div>
             <h3 className="font-display text-xl font-bold tracking-[-0.03em] text-text-primary">
@@ -57,6 +60,7 @@ export function SkillCard({ skill, className }: SkillCardProps) {
             name={item}
             label={item}
             iconSize={13}
+            href={getTechIconDefinition(item)?.url ?? undefined}
             className="px-2.5 py-1 text-[11px] group-hover:-translate-y-0.5"
           />
         ))}

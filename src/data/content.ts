@@ -106,49 +106,6 @@ export const aboutHighlights = [
   'Lifelong Learner',
 ];
 
-export const skillTiles: SkillTile[] = [
-  {
-    title: 'React',
-    description: 'Component systems, state flow, and UI architecture built for scale.',
-    iconKey: 'react',
-  },
-  {
-    title: 'TypeScript',
-    description: 'Strict types that keep product logic predictable and maintainable.',
-    iconKey: 'typescript',
-  },
-  {
-    title: 'JavaScript',
-    description: 'Core language fluency for interaction, automation, and product logic.',
-    iconKey: 'javascript',
-  },
-  {
-    title: 'Node',
-    description: 'Backend services, API glue, and server-side orchestration.',
-    iconKey: 'node',
-  },
-  {
-    title: 'Python',
-    description: 'Automation, AI workflows, and data-friendly problem solving.',
-    iconKey: 'python',
-  },
-  {
-    title: 'Tailwind',
-    description: 'Design tokens, responsive layout, and fast UI implementation.',
-    iconKey: 'tailwind',
-  },
-  {
-    title: 'PostgreSQL',
-    description: 'Relational modeling and query design for dependable data systems.',
-    iconKey: 'postgres',
-  },
-  {
-    title: 'Git & GitHub',
-    description: 'Version control, collaboration, and shipping with confidence.',
-    iconKey: 'git',
-  },
-];
-
 export const contactDetails: ContactDetail[] = [
   {
     label: 'Email',

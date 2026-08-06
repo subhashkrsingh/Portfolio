@@ -7,19 +7,41 @@ type TechBadgeProps = {
   label?: string;
   className?: string;
   iconSize?: number;
+  href?: string;
 };
 
-export function TechBadge({ name, label, className, iconSize = 14 }: TechBadgeProps) {
+export function TechBadge({ name, label, className, iconSize = 14, href }: TechBadgeProps) {
   const tech = getTechIconDefinition(name);
   const resolvedLabel = label ?? tech?.label ?? name;
+  const sharedClassName = cn(
+    'inline-flex items-center gap-1.5 rounded-full border border-border bg-[var(--color-card)] px-3 py-1.5 text-xs font-medium text-text-secondary transition-all duration-300 hover:border-primary/30 hover:bg-primary/10 hover:text-text-primary',
+    href ? 'cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-card)]' : '',
+    className,
+  );
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noreferrer noopener"
+        aria-label={resolvedLabel}
+        className={sharedClassName}
+      >
+        {tech ? (
+          <TechIcon name={name} size={iconSize} className="shrink-0" ariaHidden />
+        ) : (
+          <span className="h-2 w-2 shrink-0 rounded-full bg-current opacity-60" aria-hidden="true" />
+        )}
+        <span>{resolvedLabel}</span>
+      </a>
+    );
+  }
 
   return (
     <span
       aria-label={resolvedLabel}
-      className={cn(
-        'inline-flex items-center gap-1.5 rounded-full border border-border bg-[var(--color-card)] px-3 py-1.5 text-xs font-medium text-text-secondary transition-all duration-300 hover:border-primary/30 hover:bg-primary/10 hover:text-text-primary',
-        className,
-      )}
+      className={sharedClassName}
     >
       {tech ? (
         <TechIcon name={name} size={iconSize} className="shrink-0" ariaHidden />
