@@ -8,9 +8,19 @@ type TechBadgeProps = {
   className?: string;
   iconSize?: number;
   href?: string;
+  tabIndex?: number;
+  ariaHidden?: boolean;
 };
 
-export function TechBadge({ name, label, className, iconSize = 14, href }: TechBadgeProps) {
+export function TechBadge({
+  name,
+  label,
+  className,
+  iconSize = 14,
+  href,
+  tabIndex,
+  ariaHidden,
+}: TechBadgeProps) {
   const tech = getTechIconDefinition(name);
   const resolvedLabel = label ?? tech?.label ?? name;
   const sharedClassName = cn(
@@ -26,6 +36,8 @@ export function TechBadge({ name, label, className, iconSize = 14, href }: TechB
         target="_blank"
         rel="noreferrer noopener"
         aria-label={resolvedLabel}
+        aria-hidden={ariaHidden || undefined}
+        tabIndex={tabIndex}
         className={sharedClassName}
       >
         {tech ? (
@@ -41,6 +53,8 @@ export function TechBadge({ name, label, className, iconSize = 14, href }: TechB
   return (
     <span
       aria-label={resolvedLabel}
+      aria-hidden={ariaHidden || undefined}
+      tabIndex={tabIndex}
       className={sharedClassName}
     >
       {tech ? (
