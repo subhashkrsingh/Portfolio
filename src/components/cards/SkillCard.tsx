@@ -1,6 +1,7 @@
 import { Badge } from '@/components/ui/Badge';
 import { TechBadge } from '@/components/ui/TechBadge';
 import { TechIcon } from '@/components/ui/TechIcon';
+import { useExpandableOverflow } from '@/hooks/useExpandableOverflow';
 import { getTechIconDefinition } from '@/data/tech-icons';
 import { cn } from '@/utils/cn';
 import { motion, useReducedMotion } from 'framer-motion';
@@ -14,7 +15,6 @@ import {
   Sparkles,
   Wrench,
 } from 'lucide-react';
-import { useId, useLayoutEffect, useRef, useState } from 'react';
 import type { SkillGroup } from '@/types/content';
 
 type SkillCardProps = {
@@ -32,71 +32,29 @@ const iconMap = {
   spark: Sparkles,
 } as const;
 
-const COLLAPSED_BADGE_HEIGHT = 96;
+const COLLAPSED_MAX_HEIGHT = 232;
 
 export function SkillCard({ skill, className }: SkillCardProps) {
   const prefersReducedMotion = useReducedMotion();
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [visibleBadgeCount, setVisibleBadgeCount] = useState(skill.items.length);
-  const badgeListRef = useRef<HTMLDivElement | null>(null);
-  const badgeRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const badgeListId = useId();
   const Icon = iconMap[skill.iconKey as keyof typeof iconMap] ?? Code2;
   const leadingTech = getTechIconDefinition(skill.iconKey);
+  const {
+    containerRef,
+    contentRef,
+    isExpanded,
+    setIsExpanded,
+    hiddenCount,
+    shouldShowToggle,
+    maxHeight,
+    toggleId,
+    registerItemRef,
+  } = useExpandableOverflow({
+    itemCount: skill.items.length,
+    collapsedMaxHeight: COLLAPSED_MAX_HEIGHT,
+  });
 
-  useLayoutEffect(() => {
-    const measureVisibleBadges = () => {
-      const container = badgeListRef.current;
-      if (!container) {
-        return;
-      }
-
-      const badgeNodes = badgeRefs.current.filter((node): node is HTMLDivElement => Boolean(node));
-      if (badgeNodes.length === 0) {
-        setVisibleBadgeCount(skill.items.length);
-        return;
-      }
-
-      const visibleBottom = container.getBoundingClientRect().top + COLLAPSED_BADGE_HEIGHT;
-      let nextVisibleCount = 0;
-
-      for (const badgeNode of badgeNodes) {
-        if (badgeNode.getBoundingClientRect().bottom <= visibleBottom - 1) {
-          nextVisibleCount += 1;
-        }
-      }
-
-      setVisibleBadgeCount((current) => (current === nextVisibleCount ? current : nextVisibleCount));
-    };
-
-    let frame = 0;
-
-    const scheduleMeasure = () => {
-      window.cancelAnimationFrame(frame);
-      frame = window.requestAnimationFrame(measureVisibleBadges);
-    };
-
-    scheduleMeasure();
-
-    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(scheduleMeasure);
-    if (badgeListRef.current) {
-      observer?.observe(badgeListRef.current);
-    }
-    window.addEventListener('resize', scheduleMeasure);
-
-    return () => {
-      observer?.disconnect();
-      window.removeEventListener('resize', scheduleMeasure);
-      window.cancelAnimationFrame(frame);
-    };
-  }, [skill.items.length]);
-
-  const hiddenBadgeCount = Math.max(skill.items.length - visibleBadgeCount, 0);
-  const hasOverflow = hiddenBadgeCount > 0;
-  const shouldShowToggle = hasOverflow || isExpanded;
-  const badgeListHeight = hasOverflow && !isExpanded ? COLLAPSED_BADGE_HEIGHT : 'auto';
-  const motionTransition = prefersReducedMotion ? { duration: 0 } : { duration: 0.24, ease: 'easeOut' };
-  const heightTransition = prefersReducedMotion ? { duration: 0 } : { duration: 0.32, ease: 'easeInOut' };
+  const visibleCount = Math.max(skill.items.length - hiddenCount, 0);
+  const toggleTransition = prefersReducedMotion ? { duration: 0 } : { duration: 0.24, ease: 'easeInOut' };
 
   return (
     <motion.article
@@ -128,29 +86,30 @@ export function SkillCard({ skill, className }: SkillCardProps) {
 
       <motion.div
         layout
-        id={badgeListId}
-        ref={badgeListRef}
+        id={toggleId}
+        ref={containerRef}
         className="relative mt-5 overflow-hidden"
         initial={false}
-        animate={{ height: badgeListHeight }}
-        transition={heightTransition}
+        animate={{ maxHeight }}
+        transition={toggleTransition}
       >
-        <div className="flex flex-wrap gap-2">
+        <div ref={contentRef} className="flex flex-wrap gap-2">
           {skill.items.map((item, index) => {
-            const isHidden = hasOverflow && !isExpanded && index >= visibleBadgeCount;
+            const isHidden = hiddenCount > 0 && !isExpanded && index >= visibleCount;
 
             return (
               <motion.div
                 key={item}
-                ref={(node) => {
-                  badgeRefs.current[index] = node;
-                }}
+                ref={registerItemRef(index)}
                 initial={false}
                 animate={{ opacity: isHidden ? 0 : 1, y: isHidden ? 8 : 0 }}
                 transition={{
-                  duration: prefersReducedMotion ? 0 : 0.2,
+                  duration: prefersReducedMotion ? 0 : 0.22,
                   ease: 'easeOut',
-                  delay: prefersReducedMotion || !isExpanded || index < visibleBadgeCount ? 0 : (index - visibleBadgeCount) * 0.03,
+                  delay:
+                    prefersReducedMotion || !isExpanded || index < visibleCount
+                      ? 0
+                      : (index - visibleCount) * 0.03,
                 }}
                 className={cn('shrink-0', isHidden && 'pointer-events-none')}
               >
@@ -168,7 +127,7 @@ export function SkillCard({ skill, className }: SkillCardProps) {
           })}
         </div>
 
-        {hasOverflow && !isExpanded ? (
+        {hiddenCount > 0 && !isExpanded ? (
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[var(--color-card)] to-transparent"
@@ -178,24 +137,23 @@ export function SkillCard({ skill, className }: SkillCardProps) {
 
       {shouldShowToggle ? (
         <motion.button
-          layout
           type="button"
           onClick={() => setIsExpanded((current) => !current)}
           aria-expanded={isExpanded}
-          aria-controls={badgeListId}
-          className="mt-4 inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-4 py-2 text-sm font-semibold text-text-primary transition-all duration-300 hover:border-primary/30 hover:bg-primary/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-0"
+          aria-controls={toggleId}
+          className="mt-4 inline-flex cursor-pointer items-center gap-2 rounded-full border border-border bg-white/5 px-4 py-1.5 text-xs font-semibold text-text-primary shadow-[0_0_0_1px_rgba(255,255,255,0.05)] transition-all duration-300 hover:border-primary/30 hover:bg-primary/10 hover:text-white hover:shadow-[0_0_0_1px_rgba(139,92,246,0.18),0_0_20px_rgba(139,92,246,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-0"
           whileHover={prefersReducedMotion ? undefined : { y: -1 }}
           whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
-          transition={motionTransition}
+          transition={toggleTransition}
         >
-          <span>{isExpanded ? 'View Less' : `View More (${hiddenBadgeCount})`}</span>
+          <span>{isExpanded ? 'View Less' : `View More (${hiddenCount})`}</span>
           <motion.span
             aria-hidden="true"
             className="inline-flex"
             animate={{ rotate: isExpanded ? 180 : 0 }}
-            transition={motionTransition}
+            transition={toggleTransition}
           >
-            <ChevronDown className="h-4 w-4" />
+            <ChevronDown className="h-3.5 w-3.5" />
           </motion.span>
         </motion.button>
       ) : null}

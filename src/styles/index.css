@@ -27,6 +27,7 @@
   --ambient-one: rgba(139, 92, 246, 0.18);
   --ambient-two: rgba(59, 130, 246, 0.14);
   --ambient-three: rgba(34, 211, 238, 0.12);
+  --section-anchor-offset: 5.5rem;
   --shadow-card: 0 22px 70px rgba(2, 6, 23, 0.45);
   --shadow-glow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 24px 80px rgba(139, 92, 246, 0.14);
   --shadow-button: 0 18px 40px rgba(91, 92, 255, 0.2);
@@ -49,6 +50,7 @@
   --ambient-one: rgba(139, 92, 246, 0.08);
   --ambient-two: rgba(59, 130, 246, 0.06);
   --ambient-three: rgba(34, 211, 238, 0.05);
+  --section-anchor-offset: 0.5rem;
   --shadow-card: 0 18px 40px rgba(15, 23, 42, 0.08);
   --shadow-glow: 0 16px 36px rgba(15, 23, 42, 0.06);
   --shadow-button: 0 12px 30px rgba(91, 92, 255, 0.12);
@@ -106,6 +108,7 @@ a {
 
 .section-shell {
   @apply relative mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-8;
+  scroll-margin-top: var(--section-anchor-offset);
 }
 
 .section-content {
@@ -113,7 +116,7 @@ a {
 }
 
 .section-padding {
-  @apply py-4 md:py-6 xl:py-8;
+  @apply py-3 md:py-5 xl:py-6;
 }
 
 .glass-card {
