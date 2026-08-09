@@ -1,18 +1,11 @@
 import { Button } from '@/components/ui/Button';
+import { ProjectsShowcase } from '@/components/sections/ProjectsShowcase';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { Modal } from '@/components/ui/Modal';
 import { projects } from '@/data/content';
-import { ProjectCard } from '@/components/cards/ProjectCard';
-import { ProjectDetailsPanel } from '@/components/cards/ProjectDetailsPanel';
-import { useState } from 'react';
-import type { ProjectItem } from '@/types/content';
 import { ArrowRight } from 'lucide-react';
 
 export function ProjectsSection() {
-  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
-  const featuredProjects = projects.slice(0, 3);
-
   return (
     <section id="projects" className="section-shell section-padding scroll-mt-32">
       <div className="section-content">
@@ -21,7 +14,7 @@ export function ProjectsSection() {
             eyebrow="Featured Projects"
             title="Built like product case studies"
             highlight="product"
-            description="Three selected builds that show product thinking, AI capability, and production-minded execution."
+            description="Three current builds that show product thinking, AI capability, and production-minded execution."
             action={
               <Button href="/projects" variant="outline">
                 View all projects
@@ -31,23 +24,10 @@ export function ProjectsSection() {
           />
         </Reveal>
 
-        <div className="mt-8 grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
-          {featuredProjects.map((project, index) => (
-            <Reveal key={project.slug} delay={index * 0.04}>
-              <ProjectCard project={project} onOpen={setSelectedProject} />
-            </Reveal>
-          ))}
+        <div className="mt-8">
+          <ProjectsShowcase projects={projects} />
         </div>
       </div>
-
-      <Modal
-        open={Boolean(selectedProject)}
-        title={selectedProject?.title ?? ''}
-        subtitle={selectedProject?.summary}
-        onClose={() => setSelectedProject(null)}
-      >
-        {selectedProject ? <ProjectDetailsPanel project={selectedProject} /> : null}
-      </Modal>
     </section>
   );
 }

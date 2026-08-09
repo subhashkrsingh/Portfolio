@@ -29,6 +29,53 @@ export type ContactDetail = {
   iconKey: 'email' | 'phone' | 'location';
 };
 
+export type ProjectLifecycle = 'live' | 'in-development' | 'research' | 'archived';
+
+export type ProjectAction = {
+  label: string;
+  kind: 'link' | 'toggle';
+  href?: string;
+  targetId?: string;
+  target?: '_blank' | '_self';
+  rel?: string;
+};
+
+export type ProjectShortcut = {
+  label: string;
+  href: string;
+};
+
+export type ProjectPreviewMetric = {
+  label: string;
+  value: string;
+  tone?: 'primary' | 'secondary' | 'success' | 'warning';
+};
+
+export type ProjectCaseStudySection = {
+  id: string;
+  title: string;
+  body: string;
+  bullets?: string[];
+  visual?: 'text' | 'flow' | 'gallery';
+};
+
+export type ProjectLiveStatus = {
+  sourceUrl: string;
+  apiStatus: string;
+  lastUpdated: string;
+  latestMarketRefresh: string;
+  cached: string;
+  responseTime: string;
+  symbolCount: string;
+};
+
+export type ProjectPreview = {
+  eyebrow: string;
+  headline: string;
+  subheadline: string;
+  metrics: ProjectPreviewMetric[];
+};
+
 export type SkillGroup = {
   category: string;
   summary: string;
@@ -41,17 +88,19 @@ export type ProjectItem = {
   slug: string;
   title: string;
   category: string;
-  status: string;
+  projectType: string;
+  lifecycle: ProjectLifecycle;
+  featured?: boolean;
   summary: string;
-  problem: string;
-  solution: string;
-  architecture: string;
-  challenge: string;
-  lesson: string;
+  preview: ProjectPreview;
+  caseStudy: ProjectCaseStudySection[];
+  architectureSteps: string[];
   stack: string[];
-  metrics: string[];
   highlights: string[];
   thumbnailVariant: 'market' | 'coach' | 'hospital' | 'quiz';
+  liveStatus?: ProjectLiveStatus;
+  actions: ProjectAction[];
+  shortcuts: ProjectShortcut[];
   links: {
     github?: string;
     live?: string;

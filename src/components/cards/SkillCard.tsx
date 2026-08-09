@@ -146,7 +146,7 @@ export function SkillCard({ skill, className }: SkillCardProps) {
           whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
           transition={toggleTransition}
         >
-          <span>{isExpanded ? 'View Less' : `View More (${hiddenCount})`}</span>
+          <span>{isExpanded ? 'Show Less' : `View ${hiddenCount} More Skills`}</span>
           <motion.span
             aria-hidden="true"
             className="inline-flex"

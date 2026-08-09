@@ -73,9 +73,6 @@ export function AboutSkillsSection() {
                     Core stack and tools
                   </h3>
                 </div>
-                <Button href="/projects" variant="ghost" className="px-0 py-0 text-sm font-semibold">
-                  View All
-                </Button>
               </div>
 
               <div className="mt-6 grid gap-6 md:grid-cols-2">

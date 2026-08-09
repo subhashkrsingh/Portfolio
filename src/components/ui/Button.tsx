@@ -15,6 +15,10 @@ type ButtonProps = {
   onClick?: () => void;
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   disabled?: boolean;
+  ariaLabel?: string;
+  ariaExpanded?: boolean;
+  ariaControls?: string;
+  title?: string;
 };
 
 type Ripple = {
@@ -45,6 +49,10 @@ export function Button({
   onClick,
   type = 'button',
   disabled = false,
+  ariaLabel,
+  ariaExpanded,
+  ariaControls,
+  title,
 }: ButtonProps) {
   const prefersReducedMotion = useReducedMotion();
   const [ripples, setRipples] = useState<Ripple[]>([]);
@@ -112,8 +120,12 @@ export function Button({
         download={download}
         target={target}
         rel={rel}
+        aria-label={ariaLabel}
         aria-disabled={disabled}
+        aria-expanded={ariaExpanded}
+        aria-controls={ariaControls}
         tabIndex={disabled ? -1 : undefined}
+        title={title}
         onClick={disabled ? undefined : onClick}
         onPointerDown={variant === 'primary' ? createRipple : undefined}
         className={cn(classes, disabled && 'pointer-events-none opacity-60')}
@@ -132,6 +144,10 @@ export function Button({
       type={type}
       onClick={onClick}
       disabled={disabled}
+      aria-label={ariaLabel}
+      aria-expanded={ariaExpanded}
+      aria-controls={ariaControls}
+      title={title}
       onPointerDown={variant === 'primary' ? createRipple : undefined}
       className={classes}
       whileHover={prefersReducedMotion ? undefined : { y: -2, scale: 1.02 }}

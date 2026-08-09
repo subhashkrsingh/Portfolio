@@ -226,121 +226,449 @@ export const projects: ProjectItem[] = [
   {
     slug: 'energixchange',
     title: 'EnergiXchange',
-    category: 'Professional Dashboard',
-    status: 'Full Stack',
+    category: 'Market Intelligence',
+    projectType: 'AI Engineering Product',
+    lifecycle: 'live',
+    featured: true,
     summary:
-      'A live market analytics dashboard designed to make fast scanning, comparison, and decision-making feel calm and intentional.',
-    problem:
-      'Financial and market data becomes hard to interpret when the interface is noisy, slow, or too dense for mobile screens.',
-    solution:
-      'Built a responsive analytics experience with interactive charts, cache-aware refresh logic, and a layout tuned for quick reading.',
-    architecture:
-      'API data layer -> cached requests -> chart widgets -> comparative panels -> mobile-friendly summary cards.',
-    challenge:
-      'Balancing information density with clarity while keeping the dashboard readable across breakpoints.',
-    lesson:
-      'Data-heavy products feel better when the visual hierarchy is strict and every interaction has a job.',
-    stack: ['React', 'TypeScript', 'Chart UI', 'API Integration', 'Responsive Design', 'Caching'],
-    metrics: [
-      'Interactive chart surface for rapid scanability',
-      'Repeated requests designed to reuse cached results',
-      'Layout optimized for desktop and compact mobile dashboards',
+      'A flagship market analytics dashboard that turns noisy financial signals into a calm, scan-friendly product experience.',
+    preview: {
+      eyebrow: 'Flagship project',
+      headline: 'Live market intelligence, distilled',
+      subheadline:
+        'Production-minded dashboards, cache-aware refreshes, and a layout tuned for fast decision-making.',
+      metrics: [
+        { label: 'API', value: 'Online', tone: 'success' },
+        { label: 'Refresh', value: 'Cached', tone: 'primary' },
+        { label: 'Scan', value: 'Low friction', tone: 'secondary' },
+      ],
+    },
+    caseStudy: [
+      {
+        id: 'energixchange-case-study',
+        title: 'Problem',
+        body:
+          'Market data becomes difficult to trust when the interface is noisy, laggy, or too dense for quick reading.',
+        bullets: [
+          'Reduce cognitive load for rapid market checks.',
+          'Keep the mobile experience useful instead of shrinking the desktop layout.',
+          'Make refresh behavior visible so the dashboard feels dependable.',
+        ],
+      },
+      {
+        id: 'energixchange-solution',
+        title: 'Solution',
+        body:
+          'Built a responsive analytics surface with clear hierarchy, cache-aware refresh logic, and chart-driven summaries that feel closer to a product launch than a portfolio tile.',
+      },
+      {
+        id: 'energixchange-features',
+        title: 'Key Features',
+        body: 'The UI is optimized for glanceability and repeat usage.',
+        bullets: [
+          'Interactive chart surface for rapid scanability.',
+          'Cache-friendly refresh flow that avoids unnecessary churn.',
+          'Compact summary cards that stay readable on tablet and mobile.',
+          'A live status widget that can fall back safely when the source is unreachable.',
+        ],
+      },
+      {
+        id: 'energixchange-challenges',
+        title: 'Technical Challenges',
+        body:
+          'The hardest part was balancing dense data presentation with a premium visual rhythm, especially across breakpoints and reduced-motion preferences.',
+      },
+      {
+        id: 'energixchange-architecture',
+        title: 'Architecture',
+        body:
+          'API data source -> cache-aware fetch layer -> live status widget -> chart and comparison widgets -> responsive case-study shell.',
+        visual: 'flow',
+      },
+      {
+        id: 'energixchange-outcome',
+        title: 'Outcome',
+        body:
+          'The result reads like a production product showcase, not a screenshot dump, which makes the engineering story easier for recruiters to trust.',
+      },
+      {
+        id: 'energixchange-future',
+        title: 'Future Improvements',
+        body: 'Watchlists, saved comparisons, alerting, and richer market summaries would be the next natural layer.',
+        bullets: ['Watchlists', 'Saved views', 'Price alerts', 'Per-symbol deep dives'],
+      },
     ],
-    highlights: ['Live market analytics', 'Responsive cards', 'Interactive charts', 'Caching strategy'],
+    architectureSteps: [
+      'Market data source',
+      'Cache-aware fetch layer',
+      'Signal normalization',
+      'Insight widgets',
+      'Responsive dashboard shell',
+    ],
+    stack: ['React', 'TypeScript', 'Tailwind CSS', 'Chart UI', 'API Integration', 'Caching'],
+    highlights: ['Live market analytics', 'Cache-aware refresh', 'Responsive summary cards', 'Fast scanability'],
     thumbnailVariant: 'market',
+    liveStatus: {
+      sourceUrl: 'https://dashboard-app-ten-orpin.vercel.app/energy-sector',
+      apiStatus: 'Checking live demo',
+      lastUpdated: 'Auto-check on page load',
+      latestMarketRefresh: 'Live market snapshot',
+      cached: 'Fallback ready',
+      responseTime: 'Measuring',
+      symbolCount: 'Dynamic feed',
+    },
+    actions: [
+      {
+        label: 'Live Demo',
+        kind: 'link',
+        href: 'https://dashboard-app-ten-orpin.vercel.app/energy-sector',
+        target: '_blank',
+        rel: 'noreferrer',
+      },
+      {
+        label: 'GitHub',
+        kind: 'link',
+        href: `https://github.com/${githubUsername}`,
+        target: '_blank',
+        rel: 'noreferrer',
+      },
+      {
+        label: 'Case Study',
+        kind: 'toggle',
+        targetId: 'energixchange-case-study',
+      },
+    ],
+    shortcuts: [
+      { label: 'Live status', href: '#energixchange-live-status' },
+      { label: 'Architecture', href: '#energixchange-architecture' },
+      { label: 'Outcome', href: '#energixchange-outcome' },
+    ],
     links: {
       github: `https://github.com/${githubUsername}`,
-      live: siteUrl,
+      live: 'https://dashboard-app-ten-orpin.vercel.app/energy-sector',
     },
   },
   {
     slug: 'ai-fitness-coach',
     title: 'AI Fitness Coach',
-    category: 'Currently Building',
-    status: 'AI Product',
+    category: 'Personal AI Product',
+    projectType: 'Research / Building',
+    lifecycle: 'research',
     summary:
       'An AI-powered health assistant for BMI, calories, protein, meal guidance, workout planning, and future voice interaction.',
-    problem:
-      'Health apps often split planning, guidance, and tracking into disconnected screens that do not adapt to user goals.',
-    solution:
-      'Designing a single coach-style experience that turns inputs into recommendations, reminders, and a simple conversational flow.',
-    architecture:
-      'User profile -> nutrition and workout rules -> recommendation engine -> conversational assistant -> future wearable inputs.',
-    challenge:
-      'Keeping the product helpful without making the experience feel clinical or overwhelming.',
-    lesson:
-      'AI features are more useful when the interaction model stays focused on one clear outcome.',
-    stack: ['React', 'TypeScript', 'AI Recommendations', 'Health Tracking', 'Voice Ready', 'Roadmap Driven'],
-    metrics: [
-      'Roadmap tracked from a structured JSON source',
-      'Inputs scoped for BMI, calories, protein, meals, and workouts',
-      'Voice and vision layers planned without cluttering the core UI',
+    preview: {
+      eyebrow: 'Research in motion',
+      headline: 'A coach-shaped AI product',
+      subheadline:
+        'Roadmap-led, conversational, and designed to evolve into voice and vision without cluttering the core experience.',
+      metrics: [
+        { label: 'BMI', value: 'Tracked', tone: 'success' },
+        { label: 'Meals', value: 'Planned', tone: 'primary' },
+        { label: 'Voice', value: 'Queued', tone: 'secondary' },
+      ],
+    },
+    caseStudy: [
+      {
+        id: 'ai-fitness-coach-problem',
+        title: 'Problem',
+        body:
+          'Most fitness apps split tracking, advice, and planning across disconnected screens, which makes it hard to keep momentum.',
+      },
+      {
+        id: 'ai-fitness-coach-solution',
+        title: 'Solution',
+        body:
+          'Designing a single coach-style experience that converts user inputs into recommendations, reminders, and a simple conversational flow.',
+      },
+      {
+        id: 'ai-fitness-coach-features',
+        title: 'Key Features',
+        body: 'The product is being shaped around one clear outcome: useful guidance with minimal friction.',
+        bullets: [
+          'BMI, calories, protein, meal, and workout inputs in one place.',
+          'Recommendation logic that can grow with more user context.',
+          'Voice and vision readiness without overloading the first release.',
+        ],
+      },
+      {
+        id: 'ai-fitness-coach-challenges',
+        title: 'Technical Challenges',
+        body:
+          'The main challenge is keeping the experience helpful and human without drifting into a clinical or overly complex product shape.',
+      },
+      {
+        id: 'ai-fitness-coach-roadmap',
+        title: 'Roadmap',
+        body: 'The roadmap is intentionally visible so future scope stays clear.',
+        bullets: [
+          'Finish the recommendation engine.',
+          'Ship meal planning and workout guidance.',
+          'Add a voice assistant when the core coach feels stable.',
+          'Explore vision inputs only after the fundamentals are proven.',
+        ],
+      },
+      {
+        id: 'ai-fitness-coach-ai-architecture',
+        title: 'AI Architecture',
+        body:
+          'Profile inputs -> nutrition rules -> workout rules -> recommendation engine -> conversational layer -> future voice and vision inputs.',
+        visual: 'flow',
+      },
+      {
+        id: 'ai-fitness-coach-outcome',
+        title: 'Outcome',
+        body:
+          'This remains a research build, but the architecture already tells a strong story about how AI can be used with product discipline.',
+      },
+      {
+        id: 'ai-fitness-coach-future',
+        title: 'Future Improvements',
+        body:
+          'A richer assistant memory layer, wearable integrations, and guided habits are the natural next steps once the core loop is stable.',
+        bullets: ['Habit memory', 'Wearable inputs', 'Voice coaching', 'Vision-based food logging'],
+      },
     ],
+    architectureSteps: [
+      'User profile',
+      'Nutrition rules',
+      'Workout rules',
+      'Recommendation engine',
+      'Conversational assistant',
+    ],
+    stack: ['React', 'TypeScript', 'Python', 'Generative AI', 'RAG', 'Prompt Engineering'],
     highlights: ['BMI tracking', 'Meal planning', 'Workout suggestions', 'Voice assistant'],
     thumbnailVariant: 'coach',
+    actions: [
+      {
+        label: 'GitHub',
+        kind: 'link',
+        href: `https://github.com/${githubUsername}`,
+        target: '_blank',
+        rel: 'noreferrer',
+      },
+      {
+        label: 'Roadmap',
+        kind: 'toggle',
+        targetId: 'ai-fitness-coach-roadmap',
+      },
+      {
+        label: 'AI Architecture',
+        kind: 'toggle',
+        targetId: 'ai-fitness-coach-ai-architecture',
+      },
+    ],
+    shortcuts: [
+      { label: 'Roadmap', href: '#ai-fitness-coach-roadmap' },
+      { label: 'AI architecture', href: '#ai-fitness-coach-ai-architecture' },
+      { label: 'Future', href: '#ai-fitness-coach-future' },
+    ],
     links: {
       github: `https://github.com/${githubUsername}`,
-      live: siteUrl,
     },
   },
   {
     slug: 'hospital-ipd-management-system',
     title: 'Hospital IPD Management System',
-    category: 'Patient Management',
-    status: 'Enterprise',
+    category: 'Patient Operations',
+    projectType: 'Enterprise System',
+    lifecycle: 'in-development',
     summary:
-      'A structured management concept for admissions, billing, doctor coordination, reports, and secure administrative workflows.',
-    problem:
-      'Hospital operations need clear navigation, permission boundaries, and efficient status tracking to reduce manual overhead.',
-    solution:
-      'Created an interface model for patient records, doctor queues, billing, and reports with authenticated admin access.',
-    architecture:
-      'Authentication layer -> role-based screens -> patient records -> billing workflow -> reporting and audit-ready views.',
-    challenge:
-      'Designing a trustworthy interface for operational teams that have limited time and high accuracy needs.',
-    lesson:
-      'Enterprise software succeeds when the UI lowers cognitive load and exposes the right information at the right time.',
-    stack: ['React', 'TypeScript', 'Authentication', 'Reporting', 'Admin UI', 'Database Ready'],
-    metrics: [
-      'Distinct screens for patient, billing, and reports',
-      'Admin-first structure with explicit role boundaries',
-      'Layout designed for operational speed and clarity',
+      'A structured hospital IPD concept focused on admissions, billing, doctor coordination, reports, and secure admin workflows.',
+    preview: {
+      eyebrow: 'Engineering focus',
+      headline: 'Operational clarity for ward workflows',
+      subheadline:
+        'Role-based access, explicit data boundaries, and an architecture preview that reads like a system diagram.',
+      metrics: [
+        { label: 'Frontend', value: 'React', tone: 'primary' },
+        { label: 'Backend', value: 'Node.js', tone: 'secondary' },
+        { label: 'Auth', value: 'Controlled', tone: 'success' },
+        { label: 'DB', value: 'PostgreSQL', tone: 'warning' },
+      ],
+    },
+    caseStudy: [
+      {
+        id: 'hospital-ipd-problem',
+        title: 'Problem',
+        body:
+          'Hospital operations need clear navigation, permission boundaries, and efficient status tracking to reduce manual overhead.',
+      },
+      {
+        id: 'hospital-ipd-solution',
+        title: 'Solution',
+        body:
+          'Designed an interface model for patient records, doctor queues, billing, and reports with authenticated admin access.',
+      },
+      {
+        id: 'hospital-ipd-features',
+        title: 'Key Features',
+        body: 'The concept is structured around operational speed and predictable workflows.',
+        bullets: [
+          'Distinct patient, billing, doctor, and report screens.',
+          'Role-based admin structure with explicit boundaries.',
+          'Layout that prioritizes scanning, not decoration.',
+        ],
+      },
+      {
+        id: 'hospital-ipd-challenges',
+        title: 'Technical Challenges',
+        body:
+          'The hardest part is making the interface trustworthy and fast for teams that have limited time and a low tolerance for ambiguity.',
+      },
+      {
+        id: 'hospital-ipd-architecture',
+        title: 'Architecture',
+        body:
+          'Role-based frontend -> authentication gate -> patient records -> billing workflow -> reporting and audit-ready views.',
+        visual: 'flow',
+      },
+      {
+        id: 'hospital-ipd-screenshots',
+        title: 'Screenshots',
+        body:
+          'Instead of embedding heavy assets, this section uses lightweight UI mock frames to show how the system would be presented in a recruiter review.',
+        visual: 'gallery',
+        bullets: ['Admission desk', 'Billing queue', 'Reports shell'],
+      },
+      {
+        id: 'hospital-ipd-outcome',
+        title: 'Outcome',
+        body:
+          'The story emphasizes systems thinking and reliability, which is more useful here than a polished but shallow demo surface.',
+      },
+      {
+        id: 'hospital-ipd-future',
+        title: 'Future Improvements',
+        body:
+          'Audit logs, richer permission scopes, and exportable reports would be the next practical improvements.',
+        bullets: ['Audit logs', 'Permission scopes', 'Exportable reports', 'Search and filtering'],
+      },
     ],
-    highlights: ['Patient management', 'Billing', 'Doctors', 'Reports', 'Admin'],
+    architectureSteps: [
+      'Frontend shell',
+      'Authentication',
+      'Patient records',
+      'Billing workflow',
+      'Database and reports',
+    ],
+    stack: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Tailwind CSS', 'GitHub'],
+    highlights: ['Patient management', 'Billing workflows', 'Doctor coordination', 'Audit-ready reporting'],
     thumbnailVariant: 'hospital',
+    actions: [
+      {
+        label: 'GitHub',
+        kind: 'link',
+        href: `https://github.com/${githubUsername}`,
+        target: '_blank',
+        rel: 'noreferrer',
+      },
+      {
+        label: 'Architecture',
+        kind: 'toggle',
+        targetId: 'hospital-ipd-architecture',
+      },
+      {
+        label: 'Screenshots',
+        kind: 'toggle',
+        targetId: 'hospital-ipd-screenshots',
+      },
+    ],
+    shortcuts: [
+      { label: 'Architecture', href: '#hospital-ipd-architecture' },
+      { label: 'Screenshots', href: '#hospital-ipd-screenshots' },
+      { label: 'Future', href: '#hospital-ipd-future' },
+    ],
     links: {
       github: `https://github.com/${githubUsername}`,
-      live: siteUrl,
     },
   },
   {
     slug: 'kbc-quiz-platform',
     title: 'KBC Quiz Platform',
     category: 'Game Engine',
-    status: 'Game Engine',
+    projectType: 'Archived experiment',
+    lifecycle: 'archived',
     summary:
       'A polished quiz platform with lifelines, leaderboard flow, replay support, and a responsive interface built like a product.',
-    problem:
-      'Quiz experiences often feel playful but under-engineered, which hurts retention and replayability.',
-    solution:
-      'Designed a game loop with clean states, responsive answer flow, and visual feedback that supports focus and momentum.',
-    architecture:
-      'Question engine -> score state -> lifelines -> leaderboard -> replay flow -> results summary.',
-    challenge:
-      'Keeping the UI crisp while making the gameplay feel dynamic and easy to understand quickly.',
-    lesson:
-      'Even small interactive products benefit from careful state modeling and a clear progression system.',
-    stack: ['React', 'TypeScript', 'State Management', 'Leaderboard', 'Replay System', 'Responsive UI'],
-    metrics: [
-      'State-driven quiz flow',
-      'Support for lifelines and replay',
-      'Product-style visual hierarchy for a focused gameplay loop',
+    preview: {
+      eyebrow: 'Archived work',
+      headline: 'A quiz loop with product discipline',
+      subheadline:
+        'An early interactive build that still shows structured state, replay thinking, and polished answer feedback.',
+      metrics: [
+        { label: 'Replay', value: 'Ready', tone: 'success' },
+        { label: 'Lifelines', value: '3 left', tone: 'primary' },
+        { label: 'Score', value: 'Tracked', tone: 'secondary' },
+      ],
+    },
+    caseStudy: [
+      {
+        id: 'kbc-quiz-problem',
+        title: 'Problem',
+        body:
+          'Quiz experiences often feel playful but under-engineered, which hurts retention and replayability.',
+      },
+      {
+        id: 'kbc-quiz-solution',
+        title: 'Solution',
+        body:
+          'Designed a game loop with clean states, responsive answer flow, and visual feedback that supports focus and momentum.',
+      },
+      {
+        id: 'kbc-quiz-features',
+        title: 'Key Features',
+        body: 'The experience is structured to keep the next action obvious at every step.',
+        bullets: ['State-driven quiz flow', 'Support for lifelines and replay', 'Product-style hierarchy'],
+      },
+      {
+        id: 'kbc-quiz-challenges',
+        title: 'Technical Challenges',
+        body:
+          'The challenge was to keep the interface crisp while still making the gameplay feel dynamic and easy to understand quickly.',
+      },
+      {
+        id: 'kbc-quiz-architecture',
+        title: 'Architecture',
+        body: 'Question engine -> score state -> lifelines -> leaderboard -> replay flow -> results summary.',
+        visual: 'flow',
+      },
+      {
+        id: 'kbc-quiz-outcome',
+        title: 'Outcome',
+        body:
+          'Even as an archived experiment, the product framing still shows careful state modeling and a clear progression system.',
+      },
+      {
+        id: 'kbc-quiz-future',
+        title: 'Future Improvements',
+        body: 'This build could be revisited with more lifelines, timed rounds, and multiplayer ranking.',
+        bullets: ['Timed rounds', 'Multiplayer ranking', 'Question pools', 'Smarter replay analytics'],
+      },
     ],
-    highlights: ['Lifelines', 'Leaderboard', 'Replay system', 'Professional UI'],
+    architectureSteps: ['Question engine', 'Score state', 'Lifelines', 'Leaderboard', 'Replay flow'],
+    stack: ['React', 'TypeScript', 'State Management', 'Leaderboard', 'Replay System', 'Responsive UI'],
+    highlights: ['Lifelines', 'Leaderboard', 'Replay support', 'Structured game states'],
     thumbnailVariant: 'quiz',
+    actions: [
+      {
+        label: 'GitHub',
+        kind: 'link',
+        href: `https://github.com/${githubUsername}`,
+        target: '_blank',
+        rel: 'noreferrer',
+      },
+      {
+        label: 'Case Study',
+        kind: 'toggle',
+        targetId: 'kbc-quiz-problem',
+      },
+    ],
+    shortcuts: [
+      { label: 'Replay flow', href: '#kbc-quiz-architecture' },
+      { label: 'Outcome', href: '#kbc-quiz-outcome' },
+    ],
     links: {
       github: `https://github.com/${githubUsername}`,
-      live: siteUrl,
     },
   },
 ];
