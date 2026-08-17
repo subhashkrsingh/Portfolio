@@ -7,6 +7,7 @@ import type {
   HeroMetric,
   NavItem,
   ProjectItem,
+  ProjectScreenshot,
   PortfolioStat,
   SkillTile,
   SkillGroup,
@@ -144,6 +145,99 @@ export const heroMetrics: HeroMetric[] = [
 ];
 
 export const heroTech = ['React', 'TypeScript', 'JavaScript', 'Node.js', 'Python', 'Tailwind CSS', 'PostgreSQL', 'Git', 'GitHub'];
+
+const energixchangeScreenshots: ProjectScreenshot[] = [
+  {
+    src: '/Projects/EnergiXchange/01_Energy_Dashboard_Hero.webp',
+    title: 'Energy Dashboard',
+    category: 'Energy',
+    alt: 'EnergiXchange Energy Dashboard hero screenshot',
+  },
+  {
+    src: '/Projects/EnergiXchange/02_Energy_Insights.webp',
+    title: 'Energy Insights',
+    category: 'Energy',
+    alt: 'EnergiXchange Energy Insights screenshot',
+  },
+  {
+    src: '/Projects/EnergiXchange/03_Energy_Stocks_Table.webp',
+    title: 'Energy Stocks Table',
+    category: 'Energy',
+    alt: 'EnergiXchange Energy Stocks Table screenshot',
+  },
+  {
+    src: '/Projects/EnergiXchange/04_Oil_Gas_Dashboard.webp',
+    title: 'Oil & Gas Dashboard',
+    category: 'Oil & Gas',
+    alt: 'EnergiXchange Oil and Gas Dashboard screenshot',
+  },
+  {
+    src: '/Projects/EnergiXchange/05_Oil_Gas_Intraday.webp',
+    title: 'Oil & Gas Intraday',
+    category: 'Oil & Gas',
+    alt: 'EnergiXchange Oil and Gas Intraday screenshot',
+  },
+  {
+    src: '/Projects/EnergiXchange/06_Oil_Gas_Performance.webp',
+    title: 'Oil & Gas Performance',
+    category: 'Oil & Gas',
+    alt: 'EnergiXchange Oil and Gas Performance screenshot',
+  },
+  {
+    src: '/Projects/EnergiXchange/07_Oil_Gas_Insights.webp',
+    title: 'Oil & Gas Insights',
+    category: 'Oil & Gas',
+    alt: 'EnergiXchange Oil and Gas Insights screenshot',
+  },
+  {
+    src: '/Projects/EnergiXchange/08_Oil_Gas_Stocks_Table.webp',
+    title: 'Oil & Gas Stocks Table',
+    category: 'Oil & Gas',
+    alt: 'EnergiXchange Oil and Gas Stocks Table screenshot',
+  },
+  {
+    src: '/Projects/EnergiXchange/09_Real_Estate_Dashboard.webp',
+    title: 'Real Estate Dashboard',
+    category: 'Real Estate',
+    alt: 'EnergiXchange Real Estate Dashboard screenshot',
+  },
+  {
+    src: '/Projects/EnergiXchange/10_Real_Estate_Intraday.webp',
+    title: 'Real Estate Intraday',
+    category: 'Real Estate',
+    alt: 'EnergiXchange Real Estate Intraday screenshot',
+  },
+  {
+    src: '/Projects/EnergiXchange/11_Real_Estate_Performance.webp',
+    title: 'Real Estate Performance',
+    category: 'Real Estate',
+    alt: 'EnergiXchange Real Estate Performance screenshot',
+  },
+  {
+    src: '/Projects/EnergiXchange/12_Real_Estate_Insights.webp',
+    title: 'Real Estate Insights',
+    category: 'Real Estate',
+    alt: 'EnergiXchange Real Estate Insights screenshot',
+  },
+  {
+    src: '/Projects/EnergiXchange/13_Real_Estate_Stocks_Table_A.webp',
+    title: 'Real Estate Stocks Table A',
+    category: 'Real Estate',
+    alt: 'EnergiXchange Real Estate Stocks Table A screenshot',
+  },
+  {
+    src: '/Projects/EnergiXchange/14_Real_Estate_Stocks_Table_B.webp',
+    title: 'Real Estate Stocks Table B',
+    category: 'Real Estate',
+    alt: 'EnergiXchange Real Estate Stocks Table B screenshot',
+  },
+  {
+    src: '/Projects/EnergiXchange/15_Real_Estate_Stocks_Table_C.webp',
+    title: 'Real Estate Stocks Table C',
+    category: 'Real Estate',
+    alt: 'EnergiXchange Real Estate Stocks Table C screenshot',
+  },
+];
 
 export const aboutTimeline = [
   {
@@ -308,6 +402,7 @@ export const projects: ProjectItem[] = [
     stack: ['React', 'TypeScript', 'Tailwind CSS', 'Chart UI', 'API Integration', 'Caching'],
     highlights: ['Live market analytics', 'Cache-aware refresh', 'Responsive summary cards', 'Fast scanability'],
     thumbnailVariant: 'market',
+    screenshots: energixchangeScreenshots,
     liveStatus: {
       sourceUrl: 'https://dashboard-app-ten-orpin.vercel.app/energy-sector',
       apiStatus: 'Checking live demo',

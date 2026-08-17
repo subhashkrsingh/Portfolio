@@ -51,6 +51,13 @@ export type ProjectPreviewMetric = {
   tone?: 'primary' | 'secondary' | 'success' | 'warning';
 };
 
+export type ProjectScreenshot = {
+  src: string;
+  title: string;
+  category: string;
+  alt: string;
+};
+
 export type ProjectCaseStudySection = {
   id: string;
   title: string;
@@ -98,6 +105,7 @@ export type ProjectItem = {
   stack: string[];
   highlights: string[];
   thumbnailVariant: 'market' | 'coach' | 'hospital' | 'quiz';
+  screenshots?: ProjectScreenshot[];
   liveStatus?: ProjectLiveStatus;
   actions: ProjectAction[];
   shortcuts: ProjectShortcut[];
