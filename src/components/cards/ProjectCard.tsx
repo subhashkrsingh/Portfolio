@@ -2,7 +2,6 @@ import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { TechBadge } from '@/components/ui/TechBadge';
 import { ProjectDetailsPanel } from '@/components/cards/ProjectDetailsPanel';
-import { ProjectStatusWidget } from '@/components/cards/ProjectStatusWidget';
 import { cn } from '@/utils/cn';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ArrowUpRight, ExternalLink, Github } from 'lucide-react';
@@ -117,17 +116,36 @@ function ProjectSurface({ project, density }: { project: ProjectItem; density: N
               {project.preview.subheadline}
             </p>
           </div>
-
-          {project.liveStatus && project.thumbnailVariant === 'market' ? (
-            <div className="w-full max-w-[360px]">
-              <ProjectStatusWidget status={project.liveStatus} compact />
-            </div>
-          ) : (
-            <Badge variant={lifecycleVariant(project.lifecycle)}>{lifecycleLabel(project.lifecycle)}</Badge>
-          )}
+          <Badge variant={lifecycleVariant(project.lifecycle)}>{lifecycleLabel(project.lifecycle)}</Badge>
         </div>
 
-        {project.thumbnailVariant === 'market' ? (
+        {project.thumbnailVariant === 'market' && project.screenshots?.length ? (
+          <>
+            <div className={cn('grid gap-3', metricGrid)}>
+              {project.preview.metrics.map((metric) => (
+                <div key={metric.label} className="glass-card p-3">
+                  <p className="text-[10px] uppercase tracking-[0.24em] text-text-secondary">{metric.label}</p>
+                  <p className="mt-2 text-lg font-semibold text-white">{metric.value}</p>
+                </div>
+              ))}
+            </div>
+
+            <figure className="relative flex-1 overflow-hidden rounded-[24px] border border-border bg-[var(--color-card)]">
+              <img
+                src={project.screenshots[0].src}
+                alt={project.screenshots[0].alt}
+                loading="lazy"
+                decoding="async"
+                className="h-full min-h-[260px] w-full object-cover object-top"
+              />
+              <figcaption className="absolute inset-x-4 bottom-4 rounded-2xl border border-white/10 bg-black/55 px-4 py-3 text-sm font-semibold text-white backdrop-blur-md">
+                {project.screenshots[0].title}
+              </figcaption>
+            </figure>
+          </>
+        ) : null}
+
+        {project.thumbnailVariant === 'market' && !project.screenshots?.length ? (
           <>
             <div className={cn('grid gap-3', metricGrid)}>
               {project.preview.metrics.map((metric) => (
@@ -296,8 +314,8 @@ export function ProjectCard({ project, expanded, onToggle, density = 'supporting
   }, [expanded, prefersReducedMotion]);
 
   const rootClasses = cn(
-    'glass-card group relative overflow-hidden p-5 transition-shadow duration-300 hover:shadow-glow',
-    density === 'featured' && 'p-6 md:p-7 xl:p-8',
+    'glass-card group relative overflow-hidden p-4 transition-shadow duration-300 hover:shadow-glow md:p-5',
+    density === 'featured' && 'md:p-6',
     density === 'archive' && 'border-dashed border-white/12',
     className,
   );
@@ -351,8 +369,13 @@ export function ProjectCard({ project, expanded, onToggle, density = 'supporting
           <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-text-secondary transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
         </div>
 
-        <div className="mt-5">
-          <ProjectSurface project={project} density={density} />
+        <div className="mt-5 grid gap-2 sm:grid-cols-3">
+          {project.preview.metrics.slice(0, 3).map((metric) => (
+            <div key={metric.label} className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2">
+              <p className="text-[10px] uppercase tracking-[0.24em] text-text-secondary">{metric.label}</p>
+              <p className="mt-1 text-sm font-semibold text-white">{metric.value}</p>
+            </div>
+          ))}
         </div>
 
         <div className="mt-5 flex flex-wrap gap-3">
@@ -412,7 +435,10 @@ export function ProjectCard({ project, expanded, onToggle, density = 'supporting
               exit={{ opacity: 0, y: 8 }}
               transition={{ duration: 0.24, ease: 'easeOut' }}
             >
-              <ProjectDetailsPanel project={project} onClose={() => onToggle(project.slug)} />
+              <div className="grid gap-6">
+                <ProjectSurface project={project} density={density} />
+                <ProjectDetailsPanel project={project} onClose={() => onToggle(project.slug)} />
+              </div>
             </motion.div>
           ) : null}
         </AnimatePresence>

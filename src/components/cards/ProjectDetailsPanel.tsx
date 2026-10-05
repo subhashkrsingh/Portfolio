@@ -131,6 +131,64 @@ function CaseStudySection({
   );
 }
 
+function ProjectScreenshotGallery({ project }: { project: ProjectItem }) {
+  const prefersReducedMotion = useReducedMotion();
+  const screenshots = project.screenshots ?? [];
+
+  if (!screenshots.length) {
+    return null;
+  }
+
+  return (
+    <motion.section
+      id={`${project.slug}-screenshots`}
+      className="glass-card p-5"
+      initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.22, ease: 'easeOut' }}
+    >
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-text-secondary">
+            Screenshot gallery
+          </p>
+          <h5 className="mt-2 font-display text-xl font-semibold text-white">EnergiXchange product tour</h5>
+        </div>
+        <Badge variant="outline">{screenshots.length} frames</Badge>
+      </div>
+
+      <div className="mt-5 grid gap-3 sm:grid-cols-2">
+        {screenshots.map((screenshot, index) => (
+          <figure
+            key={screenshot.src}
+            className={cn(
+              'overflow-hidden rounded-[22px] border border-white/10 bg-[var(--color-card)]',
+              index === 0 && 'sm:col-span-2',
+            )}
+          >
+            <img
+              src={screenshot.src}
+              alt={screenshot.alt}
+              loading="lazy"
+              decoding="async"
+              className={cn(
+                'w-full object-cover object-top',
+                index === 0 ? 'aspect-[16/9]' : 'aspect-[4/3]',
+              )}
+            />
+            <figcaption className="flex items-center justify-between gap-3 px-4 py-3">
+              <span className="text-sm font-semibold text-white">{screenshot.title}</span>
+              <span className="text-[10px] uppercase tracking-[0.22em] text-text-secondary">
+                {screenshot.category}
+              </span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </motion.section>
+  );
+}
+
 export function ProjectDetailsPanel({ project, onClose }: ProjectDetailsPanelProps) {
   return (
     <div className="grid gap-6 xl:grid-cols-[0.92fr_1.08fr]">
@@ -149,10 +207,10 @@ export function ProjectDetailsPanel({ project, onClose }: ProjectDetailsPanelPro
               variant="ghost"
               className="px-3 py-2 text-xs font-semibold"
               onClick={onClose}
-              ariaLabel={`Collapse ${project.title} details`}
+              ariaLabel={`View less ${project.title} details`}
             >
               <ChevronUp className="h-4 w-4" />
-              Collapse
+              View Less
             </Button>
           </div>
 
@@ -218,6 +276,8 @@ export function ProjectDetailsPanel({ project, onClose }: ProjectDetailsPanelPro
       </div>
 
       <div className="grid gap-4">
+        <ProjectScreenshotGallery project={project} />
+
         {project.caseStudy.map((section) => (
           <CaseStudySection key={section.id} project={project} section={section} />
         ))}

@@ -88,7 +88,7 @@ export function ProjectStatusWidget({ status, className, compact = false }: Proj
         setProbe({
           connectionState: 'cached',
           responseTime: status.responseTime,
-          lastCheckedLabel: 'Using cached fallback',
+          lastCheckedLabel: 'Showing latest cached snapshot',
         });
       } finally {
         window.clearTimeout(timeoutId);
@@ -110,7 +110,7 @@ export function ProjectStatusWidget({ status, className, compact = false }: Proj
 
   const connectionState = probe.connectionState === 'idle' ? 'cached' : probe.connectionState;
   const responseTime = probe.responseTime || status.responseTime;
-  const apiLabel = probe.connectionState === 'online' ? 'API Online' : status.apiStatus;
+  const apiLabel = probe.connectionState === 'online' ? 'API Online' : 'Showing latest cached snapshot';
   const lastCheckedLabel = probe.lastCheckedLabel || `Last updated ${status.lastUpdated}`;
   const freshness = useMemo(
     () => (probe.connectionState === 'online' ? 'Live ping' : 'Cached snapshot'),
@@ -175,7 +175,7 @@ export function ProjectStatusWidget({ status, className, compact = false }: Proj
           <span>{lastCheckedLabel}</span>
           <span className="inline-flex items-center gap-2 uppercase tracking-[0.2em]">
             <RefreshCw className="h-3.5 w-3.5" />
-            {probe.connectionState === 'online' ? 'Live source' : status.cached}
+            {probe.connectionState === 'online' ? 'Live source' : 'Showing latest cached snapshot'}
           </span>
         </div>
       </div>

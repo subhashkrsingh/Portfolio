@@ -428,13 +428,14 @@ export const projects: ProjectItem[] = [
         rel: 'noreferrer',
       },
       {
-        label: 'Case Study',
+        label: 'View Case Study',
         kind: 'toggle',
         targetId: 'energixchange-case-study',
       },
     ],
     shortcuts: [
       { label: 'Live status', href: '#energixchange-live-status' },
+      { label: 'Screenshots', href: '#energixchange-screenshots' },
       { label: 'Architecture', href: '#energixchange-architecture' },
       { label: 'Outcome', href: '#energixchange-outcome' },
     ],
